@@ -1,0 +1,5 @@
+C:\Users\DUC VIET\Documents\Visual Studio 2008\Projects\ShoppingCard.Object\ShoppingCard.Object\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\DUC VIET\Documents\Visual Studio 2008\Projects\ShoppingCard.Object\ShoppingCard.Object\bin\Debug\ShoppingCard.Object.dll
+C:\Users\DUC VIET\Documents\Visual Studio 2008\Projects\ShoppingCard.Object\ShoppingCard.Object\bin\Debug\ShoppingCard.Object.pdb
+C:\Users\DUC VIET\Documents\Visual Studio 2008\Projects\ShoppingCard.Object\ShoppingCard.Object\obj\Debug\ShoppingCard.Object.dll
+C:\Users\DUC VIET\Documents\Visual Studio 2008\Projects\ShoppingCard.Object\ShoppingCard.Object\obj\Debug\ShoppingCard.Object.pdb
