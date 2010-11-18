@@ -50,12 +50,15 @@ INSERT INTO StatusUser(StatusUserName) VALUES ('Active')
 INSERT INTO StatusUser(StatusUserName) VALUES ('Inactive')
 
 --User--
-INSERT INTO Users(Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
-	VALUES ('admin','admin','Nguyen Huu Sang','Male','56/7 Bui Minh Truc','zlshanglz@yahoo.com','1','01265375101','1')
-INSERT INTO Users(Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
-	VALUES ('employee','employee','Tran Phan Quoc Hai','Male','under bridge','cltbquochai@yahoo.com','1','0919097097','1')
-INSERT INTO Users(Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
-	VALUES ('member','member','Pham Hong Tam','Male','next into Hai address','ketuhanh27989@yahoo.com','1','0906024094','1')
+INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
+	VALUES ('admin','admin','Nguyen Huu Sang','Male','56/7 Bui Minh Truc','zlshanglz@yahoo.com',1,'01265375101',1)
+INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
+	VALUES ('employee','employee','Pham Hong Tam','Male','next into Hai address','ketuhanh27989@yahoo.com',2,'0906024094',1)
+INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
+	VALUES ('member','member','Tran Phan Quoc Hai','Male','under bridge','cltbquochai@yahoo.com',3,'0919097097',1)
+INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
+	VALUES ('member','member','Nguyen Duc Viet','Male','under bridge','ducviet@yahoo.com',3,'0919097097',1)
+
 
 --Product--
 INSERT INTO Product(ProductId,CatId,ProductName,Price,Description,WarantyDay,Image,Quantity) VALUES ('0000001','11','American doll','500','Very beautiful','365','','100')
@@ -71,31 +74,14 @@ INSERT INTO Product(ProductId,CatId,ProductName,Price,Description,WarantyDay,Ima
 INSERT INTO Product(ProductId,CatId,ProductName,Price,Description,WarantyDay,Image,Quantity) VALUES ('0000009','33','Lux','200','','365','','100')
 
 
--------PaymentDetail--
-INSERT INTO PaymentDetail(PaymentName,Title,ReleaseDate,ReleasePlace,BankName,Account,Pay)
-VALUES ('Cheque','Cheque','12/13/2010','Nguyen Chi Thanh Q5','ACB Bank','123456789','5000')
-
 --Feedback--
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('How to buy online your product','blap blap blap ...',8,'1')
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('How to use your search feature','blap blap blap ...',8,'1')
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('How to buy online your product','blap blap blap ...',1,1)
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('How to use your search feature','blap blap blap ...',1,1)
 
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('I am very satisfy with your service','','9','2')
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('You done well','','9','2')
-
-
----------Order--
-INSERT INTO Order (PayDetailId,DeliveryId,UserIdShip,UserIdCheck,PayTypeId,CustId,ShippingDate,StatusPaidId,StatusDeliveryId,OrderDate
-ReceiverFullname,ReceiverAddress,ReceiverPhone,CountryId,City,State,Zipcode,TotalCost)
-VALUES (1,1,2,2,1,3,12/13/2010,1,1,12/13/2010,'Pham Hong Tam','under bridge','0906024094','3','HCM','Q5','12345','5000')
-
-INSERT INTO Order(PayDetailId,DeliveryId,UserIdShip,UserIdCheck,PayTypeId,CustId,ShippingDate,StatusPaidId,StatusDeliveryId,OrderDate
-ReceiverFullname,ReceiverAddress,ReceiverPhone,CountryId,City,State,Zipcode,TotalCost)
-VALUES (2,2,2,2,1,3,12/13/2010,1,1,12/13/2010,'Pham Hong Tam','under bridge','0906024094','3','HCM','Q5','12345','5000')
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('I am very satisfy with your service','',4,2)
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('You done well','',3,2)
 
 
---OrderItem--
-INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES ('1',1,'0000001',20,12/13/2010)
-INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES ('2',2,'0000002',20,12/13/2010)
 
 
 
