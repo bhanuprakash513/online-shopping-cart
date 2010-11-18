@@ -6,9 +6,9 @@ INSERT INTO CardType(CardTypeName) VALUES ('Discover Card')
 
 --Category--
 
-INSERT INTO Category(CatId,CatName) VALUES (11,'Doll')
-INSERT INTO Category(CatId,CatName) VALUES (22,'Bag')
-INSERT INTO Category(CatId,CatName) VALUES (33,'Soap')
+INSERT INTO Category(CatId,CatName) VALUES ('11','Doll')
+INSERT INTO Category(CatId,CatName) VALUES ('22','Bag')
+INSERT INTO Category(CatId,CatName) VALUES ('33','Soap')
 
 --Country --
 INSERT INTO Country(CountryName) VALUES ('America')
