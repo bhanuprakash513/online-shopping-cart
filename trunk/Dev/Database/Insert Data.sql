@@ -23,8 +23,8 @@ INSERT INTO PaymentType(PayTypeName) VALUES ('Credit Card')
 INSERT INTO PaymentType(PayTypeName) VALUES ('VPP')
 
 --DeliveryType --
-INSERT INTO DeliveryType(DeliveryId,DeliveryName,DeliveryCost) VALUES (1,'Post Office','500')
-INSERT INTO DeliveryType(DeliveryId,DeliveryName,DeliveryCost) VALUES (2,'Manually','0')
+INSERT INTO DeliveryType(DeliveryId,DeliveryName,DeliveryCost) VALUES ('1','Post Office','50')
+INSERT INTO DeliveryType(DeliveryId,DeliveryName,DeliveryCost) VALUES ('2','Manually','0')
 
 --StatusDelivery--
 INSERT INTO StatusDelivery(StatusDeliveryName) VALUES ('Undone')
@@ -82,17 +82,40 @@ INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('I am very satis
 INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('You done well','',3,2)
 
 
+------------------------------PAYMENT DETAIL----------------------------------------------------
+INSERT PaymentDetail
+(
+	PaymentName,Title,ReleaseDate,ReleasePlace,BankName,Account,Pay
+)
+VALUES
+(
+	'Cheque','Return for Tam',getdate(),'TPHCM','Vietcombank','11111',1000
+)
+
+-------------------------------ORDER------------------------------------
+INSERT [Order]
+(
+	PayDetailID,DeliveryId,PayTypeId,
+	CustId,StatusPaidId,StatusDeliveryId,
+	OrderDate,ReceiverFullname,ReceiverAddress,
+	ReceiverPhone,CountryId,City,
+	State,ZipCode,TotalCost
+)
+VALUES
+(
+	1,1,1,
+	4,1,1,
+	getdate(),N'Thay Hoa','HungVuongAptech',
+	'2342423',1,'Las Vegas',
+	'Texa','1234',1050			
+)
 
 
 
-
-
-
-
-
-
-
-
+---------------------ORDERITEM----------------------------------
+INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES('1000000100000001',1,'0000001',1,DateAdd(dd,365,Getdate()))
+INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES('1000000200000001',1,'0000002',1,DateAdd(dd,365,Getdate()))
+INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES('1000000300000001',1,'0000003',1,DateAdd(dd,365,Getdate()))
 
 
 
