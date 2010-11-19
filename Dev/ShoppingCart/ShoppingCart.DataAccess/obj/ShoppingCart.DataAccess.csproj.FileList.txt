@@ -1,0 +1,10 @@
+obj\Debug\ResolveAssemblyReference.cache
+bin\Debug\ShoppingCart.DataAccess.dll
+bin\Debug\ShoppingCart.DataAccess.pdb
+bin\Debug\ShoppingCart.Common.dll
+bin\Debug\ShoppingCart.dll
+bin\Debug\ShoppingCart.Common.pdb
+bin\Debug\ShoppingCart.pdb
+obj\Debug\ShoppingCart.DataAccess.dll
+obj\Debug\ShoppingCart.DataAccess.pdb
+bin\Debug\ShoppingCart.DataAccess.dll.config
