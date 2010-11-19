@@ -1,7 +1,0 @@
-obj\Debug\ResolveAssemblyReference.cache
-bin\Debug\ShoppingCart.dll
-bin\Debug\ShoppingCart.pdb
-bin\Debug\ShoppingCart.Common.dll
-bin\Debug\ShoppingCart.Common.pdb
-obj\Debug\ShoppingCart.dll
-obj\Debug\ShoppingCart.pdb
