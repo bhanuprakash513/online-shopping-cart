@@ -7,25 +7,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.DataAccess", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.Common", "ShoppingCart.Common\ShoppingCart.Common.csproj", "{5E3CCBC1-EFD6-4AB7-8CD7-7A878B621CD5}"
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\ShoppingCart.UI\", "..\..\WebSites\ShoppingCart.UI\", "{36458F84-B5C4-494A-B7C7-DDA1346E1034}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\ShoppingCart.UI\", "C:\Documents and Settings\Admin\My Documents\Visual Studio 2005\WebSites\ShoppingCart.UI\", "{821A6061-2892-45CD-B65D-AAC1DF36B6AB}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{5E3CCBC1-EFD6-4AB7-8CD7-7A878B621CD5}|ShoppingCart.Common.dll;{68C0F2EA-8E11-4D08-87CD-6D89A2D3CBC6}|ShoppingCart.DataAccess.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/ShoppingCart.UI"
-		Debug.AspNetCompiler.PhysicalPath = "..\..\WebSites\ShoppingCart.UI\"
+		Debug.AspNetCompiler.PhysicalPath = "C:\Documents and Settings\Admin\My Documents\Visual Studio 2005\WebSites\ShoppingCart.UI\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ShoppingCart.UI\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/ShoppingCart.UI"
-		Release.AspNetCompiler.PhysicalPath = "..\..\WebSites\ShoppingCart.UI\"
+		Release.AspNetCompiler.PhysicalPath = "C:\Documents and Settings\Admin\My Documents\Visual Studio 2005\WebSites\ShoppingCart.UI\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\ShoppingCart.UI\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "1295"
-		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
 Global
@@ -68,16 +66,16 @@ Global
 		{5E3CCBC1-EFD6-4AB7-8CD7-7A878B621CD5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5E3CCBC1-EFD6-4AB7-8CD7-7A878B621CD5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{5E3CCBC1-EFD6-4AB7-8CD7-7A878B621CD5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Debug|.NET.ActiveCfg = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Debug|.NET.Build.0 = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Release|.NET.ActiveCfg = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Release|.NET.Build.0 = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{36458F84-B5C4-494A-B7C7-DDA1346E1034}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Debug|.NET.ActiveCfg = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Debug|.NET.Build.0 = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Debug|Any CPU.ActiveCfg = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Debug|Mixed Platforms.Build.0 = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|.NET.ActiveCfg = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|.NET.Build.0 = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|Any CPU.ActiveCfg = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
+		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|Mixed Platforms.Build.0 = Debug|.NET
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
