@@ -1,0 +1,7 @@
+bin\Debug\ShoppingCart.Object.dll
+bin\Debug\ShoppingCart.Object.pdb
+bin\Debug\ShoppingCart.Common.dll
+bin\Debug\ShoppingCart.Common.pdb
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\ShoppingCart.Object.dll
+obj\Debug\ShoppingCart.Object.pdb
