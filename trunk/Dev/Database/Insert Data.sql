@@ -75,11 +75,11 @@ INSERT INTO Product(ProductId,CatId,ProductName,Price,Description,WarantyDay,Ima
 
 
 --Feedback--
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('How to buy online your product','blap blap blap ...',1,1)
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('How to use your search feature','blap blap blap ...',1,1)
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('How to buy online your product','blap blap blap ...',1,1,getdate())
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('How to use your search feature','blap blap blap ...',1,1,getdate())
 
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('I am very satisfy with your service','',4,2)
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId) VALUES ('You done well','',3,2)
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('I am very satisfy with your service','',4,2,getdate())
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('You done well','',3,2,getdate())
 
 
 ------------------------------PAYMENT DETAIL----------------------------------------------------
