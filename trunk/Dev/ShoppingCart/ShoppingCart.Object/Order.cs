@@ -21,9 +21,9 @@ namespace ShoppingCard.Object
          private int empidcheck;
          private Employee empship;
          private string city;
-         private int state;
-         private int zipcode;
-         private int totalcode;
+         private string state;
+         private string zipcode;
+         private string totalcode;
          private Country countryinfor;
 
          public Order()
@@ -184,7 +184,7 @@ namespace ShoppingCard.Object
                    city = value;
                }
            }
-           public int State
+           public String State
            {
                get
                {
@@ -195,7 +195,7 @@ namespace ShoppingCard.Object
                    state = value;
                }
            }
-           public int Zipcode
+           public String Zipcode
            {
                get
                {
@@ -206,7 +206,7 @@ namespace ShoppingCard.Object
                   zipcode = value;
                }
            }
-           public int TotalCost
+           public String TotalCost
            {
                get
                {
@@ -244,10 +244,34 @@ namespace ShoppingCard.Object
                    if (row[ColumnName.ORDER_ORDERID] != null)
                        obj.OrderId = Convert.ToInt32(row[ColumnName.ORDER_ORDERID]);
                    Delivery.Mapping(obj.DeliveryInfo, row);
-                   //UserIdShip,CustId,UserIdCheck,PayDetailId dung DAO khac
-                   
-                   
-              
+                   if (row[ColumnName.ORDER_USERIDSHIP] != null)
+                       obj.EmpShip.UserId = Convert.ToInt32(row[ColumnName.ORDER_USERIDSHIP].ToString());
+                   if (row[ColumnName.ORDER_USERIDCHECK] != null)
+                       obj.EmpIdCheck = Convert.ToInt32(row[ColumnName.ORDER_USERIDCHECK].ToString());
+                   if (row[ColumnName.ORDER_CUSTID] != null)
+                       obj.CustInfor.UserId = Convert.ToInt32(row[ColumnName.ORDER_CUSTID].ToString());
+                   if (row[ColumnName.ORDER_PAYDETAILID] != null)
+                       obj.PaymentInfor.PayId= Convert.ToInt32(row[ColumnName.ORDER_PAYDETAILID].ToString());
+                   if (row[ColumnName.ORDER_PAYTYPEID] != null)
+                       obj.PaymentInfor.PayType.PayTypeId =Convert.ToInt32(row[ColumnName.ORDER_PAYTYPEID].ToString());
+                   if (row[ColumnName.ORDER_SHIPPINGDATE] != null)
+                       obj.ShippingDate = DateHelper.Mapping(row[ColumnName.ORDER_SHIPPINGDATE].ToString());
+                   if (row[ColumnName.ORDER_ORDERDATE] != null)
+                       obj.OrderDate= DateHelper.Mapping(row[ColumnName.ORDER_ORDERDATE].ToString());
+                   if (row[ColumnName.ORDER_RECEIVERFULLNAME] != null)
+                       obj.ReceiverFullname = row[ColumnName.ORDER_RECEIVERFULLNAME].ToString();
+                   if (row[ColumnName.ORDER_RECEIVERADDRESS] != null)
+                       obj.ReceiverAddress = row[ColumnName.ORDER_RECEIVERADDRESS].ToString();
+                   if (row[ColumnName.ORDER_RECEIVERPHONE] != null)
+                       obj.ReceiverPhone = row[ColumnName.ORDER_RECEIVERPHONE].ToString();
+                   if (row[ColumnName.ORDER_CITY] != null)
+                       obj.City = row[ColumnName.ORDER_CITY].ToString();
+                   if (row[ColumnName.ORDER_STATE] != null)
+                       obj.State = row[ColumnName.ORDER_STATE].ToString();
+                   if (row[ColumnName.ORDER_ZIPCODE] != null)
+                       obj.Zipcode = row[ColumnName.ORDER_ZIPCODE].ToString();
+                   if (row[ColumnName.ORDER_TOTALCOST] != null)
+                       obj.TotalCost = row[ColumnName.ORDER_TOTALCOST].ToString();
                }
                catch (Exception e)
                {
