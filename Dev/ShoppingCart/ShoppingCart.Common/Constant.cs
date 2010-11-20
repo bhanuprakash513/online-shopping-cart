@@ -17,6 +17,7 @@ namespace ShoppingCart.Common
 
         public static int FAQ_TYPE_ID = 1;
         public static int FEEDBACK_TYPE_ID = 2;
+       
         
 
     }

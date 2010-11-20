@@ -88,7 +88,6 @@ namespace ShoppingCart.Object
                     obj.CCNumber = row[ColumnName.PAYMENTDETAIL_SECURITYNUMBER].ToString();
 
                
-                
                 if (row[ColumnName.PAYMENTDETAIL_PAYDETAILID] != null)
                     obj.PayId = Convert.ToInt32(row[ColumnName.PAYMENTDETAIL_PAYDETAILID]);
                 if (row[ColumnName.PAYMENTDETAIL_PAY] != null)
@@ -109,7 +108,6 @@ namespace ShoppingCart.Object
         /// <returns>List</returns>
         public static List<PaymentCC> Mapping(DataTable table)
         {
-          
             List<PaymentCC> lst = new List<PaymentCC>();
             for (int i = 0; i < table.Rows.Count; i++)
                lst.Add(Mapping(table.Rows[i]));

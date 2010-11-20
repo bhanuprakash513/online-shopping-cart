@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ShoppingCard.Object;
+using System.Data;
+using ShoppingCart.Common;
 
 namespace ShoppingCart.Object
 {
@@ -81,6 +83,57 @@ namespace ShoppingCart.Object
             {
                 drawername = value;
             }
+        }
+
+
+        /// <summary>
+        /// Mapping object
+        /// </summary>
+        /// <param name="row">DataRow</param>
+        /// <returns>PaymentDD</returns>
+        public static PaymentDD Mapping(DataRow row)
+        {
+            PaymentDD obj = new PaymentDD();
+            try
+            {
+                PaymentType.Mapping(obj.PayType, row);
+                StatusPaid.Mapping(obj.Status, row);
+
+                if (row[ColumnName.PAYMENTDETAIL_TITLE] != null)
+                    obj.Title = row[ColumnName.PAYMENTDETAIL_TITLE].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_PAYWAY] != null)
+                    obj.PayWay = row[ColumnName.PAYMENTDETAIL_PAYWAY].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_RELEASEPLACE] != null)
+                    obj.ReleasePlace =row[ColumnName.PAYMENTDETAIL_RELEASEPLACE].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_PAYPLACE] != null)
+                    obj.PayPlace =row[ColumnName.PAYMENTDETAIL_PAYPLACE].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_PAYERNAME] != null)
+                    obj.PayerName = row[ColumnName.PAYMENTDETAIL_PAYERNAME].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_DRAWERNAME] != null)
+                    obj.drawername = row[ColumnName.PAYMENTDETAIL_DRAWERNAME].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_PAY] != null)
+                    obj.PayMoney = row[ColumnName.PAYMENTDETAIL_PAY].ToString();
+   
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.Message);
+            }
+            return obj;
+        }
+
+        /// <summary>
+        /// Mapping list
+        /// </summary>
+        /// <param name="table">DataTable</param>
+        /// <returns>List</returns>
+        public static List<PaymentDD> Mapping(DataTable table)
+        {
+            List<PaymentDD> lst = new List<PaymentDD>();
+            for (int i = 0; i < table.Rows.Count; i++)
+                lst.Add(Mapping(table.Rows[i]));
+            return lst;
+
         }
 
     }
