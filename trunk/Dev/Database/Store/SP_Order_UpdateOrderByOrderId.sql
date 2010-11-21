@@ -1,8 +1,8 @@
 /***********************************************************
-* Purpose : Update Order
+* Purpose : Update Order By OrderId
 * Author : Tam Kute
 * Date: 21-11-2010S
-* Description: Update Order
+* Description: Update Order By OrderId
 ***********************************************************/
 
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_Order_UpdateOrderByOrderId]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
