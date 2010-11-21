@@ -10,10 +10,8 @@ DROP PROCEDURE [dbo].[SP_Order_UpdateOrderByOrderId]
 GO
 CREATE PROC [SP_Order_UpdateOrderByOrderId]
 	@OrderId int,
-	@PayDetailId int,
 	@DeliveryId int,
 	@PayTypeId int,
-	@ShippingDate datetime,
 	@OrderDate datetime,
 	@ReceiverFullname nvarchar(50),
 	@ReceiverAddress nvarchar(50),
@@ -31,7 +29,7 @@ BEGIN
 
 	UPDATE [ORDER]
 	
-		SET PayDetailId=@PayDetailId,
+		SET 
 		DeliveryId=@DeliveryId,
 		PayTypeId=@PayTypeId,
 		OrderDate=@OrderDate,
