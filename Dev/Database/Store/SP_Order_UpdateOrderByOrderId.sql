@@ -12,7 +12,6 @@ CREATE PROC [SP_Order_UpdateOrderByOrderId]
 	@OrderId int,
 	@DeliveryId int,
 	@PayTypeId int,
-	@OrderDate datetime,
 	@ReceiverFullname nvarchar(50),
 	@ReceiverAddress nvarchar(50),
 	@ReceiverPhone varchar(15),
@@ -32,7 +31,6 @@ BEGIN
 		SET 
 		DeliveryId=@DeliveryId,
 		PayTypeId=@PayTypeId,
-		OrderDate=@OrderDate,
 		ReceiverFullname=@ReceiverFullname,
 		ReceiverAddress=@ReceiverAddress,
 		ReceiverPhone=@ReceiverPhone,
