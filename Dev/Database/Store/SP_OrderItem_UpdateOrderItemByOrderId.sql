@@ -16,14 +16,9 @@ CREATE PROC [SP_OrderItem_UpdateOrderItemByOrderItemId]
 
 AS
 BEGIN
-	DECLARE @ExWarrantyDate datetime
-	DECLARE @OrderDate datetime
-	SELECT @OrderDate=OrderDate FROM [Order] WHERE @OrderId=[Order].OrderId
-	SELECT @ExWarrantyDate=DateAdd(dd,Product.WarantyDay,@OrderDate) FROM Product Where ProductId=@ProductId
-
 	UPDATE [OrderItem]
 	
-		SET		ExWarrantyDate=@ExWarrantyDate,
+		SET		
 				ProductId=@ProductId,
 				OrderQuantity=@OrderQuantity
 	WHERE OrderItemId=@OrderItemId

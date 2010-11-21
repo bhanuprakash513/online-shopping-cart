@@ -15,27 +15,25 @@ CREATE PROC [SP_OrderItem_InsertOrderItem]
 	@OrderQuantity int
 AS
 BEGIN
-	DECLARE @ExWarrantyDate datetime
-	DECLARE @OrderDate datetime
-	SELECT @OrderDate=OrderDate FROM [Order] WHERE @OrderId=[Order].OrderId
-	SELECT @ExWarrantyDate=DateAdd(dd,Product.WarantyDay,@OrderDate) FROM Product Where ProductId=@ProductId
 
 	INSERT INTO OrderItem
 	(
 		OrderItemId,
 		OrderId,
 		ProductId,
-		OrderQuantity,
-		ExWarrantyDate
+		OrderQuantity
 	)
 	VALUES
 	(
 		@OrderItemId,
 		@OrderId,
 		@ProductId,
-		@OrderQuantity,
-		@ExWarrantyDate
+		@OrderQuantity
 	)
 END
 
+--	DECLARE @ExWarrantyDate datetime
+--	DECLARE @OrderDate datetime
+--	SELECT @OrderDate=OrderDate FROM [Order] WHERE @OrderId=[Order].OrderId
+--	SELECT @ExWarrantyDate=DateAdd(dd,Product.WarantyDay,@OrderDate) FROM Product Where ProductId=@ProductId
 
