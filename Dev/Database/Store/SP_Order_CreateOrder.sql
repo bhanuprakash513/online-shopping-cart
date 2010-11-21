@@ -13,7 +13,6 @@ CREATE PROC [SP_Order_CreateOrder]
 	@DeliveryId int,
 	@PayTypeId int,
 	@CustId int,
-	@ShippingDate datetime,
 	@OrderDate datetime,
 	@ReceiverFullname nvarchar(50),
 	@ReceiverAddress nvarchar(50),
@@ -22,7 +21,8 @@ CREATE PROC [SP_Order_CreateOrder]
 	@City nvarchar(50),
 	@State nvarchar(50),
 	@Zipcode nvarchar(5),
-	@TotalCost decimal(18,0)
+	@TotalCost decimal(18,0),
+	@Note nvarchar(max)
 AS
 BEGIN
 	DECLARE @StatusPaidId int	
@@ -46,7 +46,8 @@ BEGIN
 		Zipcode,
 		TotalCost,
 		StatusPaidId,
-		StatusDeliveryId
+		StatusDeliveryId,
+		Note
 	)
 	VALUES
 	(
@@ -64,6 +65,7 @@ BEGIN
 		@Zipcode,
 		@TotalCost,
 		@StatusPaidId,
-		@StatusDeliveryId
+		@StatusDeliveryId,
+		@Note
 	)	
 END
