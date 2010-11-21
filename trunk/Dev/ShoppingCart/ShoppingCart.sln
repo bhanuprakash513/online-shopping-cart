@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.Common", "Shop
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\ShoppingCart.UI\", "C:\Documents and Settings\Admin\My Documents\Visual Studio 2005\WebSites\ShoppingCart.UI\", "{821A6061-2892-45CD-B65D-AAC1DF36B6AB}"
 	ProjectSection(WebsiteProperties) = preProject
+		ProjectReferences = "{68C0F2EA-8E11-4D08-87CD-6D89A2D3CBC6}|ShoppingCart.DataAccess.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/ShoppingCart.UI"
 		Debug.AspNetCompiler.PhysicalPath = "C:\Documents and Settings\Admin\My Documents\Visual Studio 2005\WebSites\ShoppingCart.UI\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ShoppingCart.UI\"

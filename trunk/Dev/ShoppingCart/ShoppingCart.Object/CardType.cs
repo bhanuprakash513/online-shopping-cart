@@ -11,6 +11,12 @@ namespace ShoppingCart.Object
         private int cardtypeid;
         private string cardtypename;
 
+        public CardType()
+        {
+            cardtypeid = -1;
+            cardtypename = "";
+        }
+
         public int CardTypeId
         {
             get
@@ -45,9 +51,9 @@ namespace ShoppingCart.Object
         {
             try
             {
-                if (row[ColumnName.CARDTYPE_CARDTYPEID] != null)
+                if (row[ColumnName.CARDTYPE_CARDTYPEID] != null && row[ColumnName.CARDTYPE_CARDTYPEID].ToString()!="")
                     obj.CardTypeId = Convert.ToInt32(row[ColumnName.CARDTYPE_CARDTYPEID].ToString());
-                if (row[ColumnName.CARDTYPE_CARDTYPENAME] != null)
+                if (row[ColumnName.CARDTYPE_CARDTYPENAME] != null && row[ColumnName.CARDTYPE_CARDTYPENAME].ToString()!="")
                     obj.CardTypeName = row[ColumnName.CARDTYPE_CARDTYPENAME].ToString();
 
             }

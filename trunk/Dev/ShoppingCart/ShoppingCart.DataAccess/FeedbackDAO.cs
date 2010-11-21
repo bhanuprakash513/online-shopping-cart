@@ -10,7 +10,7 @@ namespace ShoppingCart.DataAccess
 {
     public class FeedbackDAO : ParentDAO
     {
-        public static class Query
+        public static class QUERY
         {
             public static String GET_ALL_FEEDBACKTYPEID
             {
@@ -75,8 +75,8 @@ namespace ShoppingCart.DataAccess
             
             this. paramCollection = new SqlParameter[1];
             DataTable table = new DataTable();
-            this.paramCollection[0] =new SqlParameter("FeedTypeId",feedtypeid);        
-            this.Fill(Query.GET_ALL_FEEDBACKTYPEID,this.paramCollection,table);
+            this.paramCollection[0] =new SqlParameter("FeedTypeId",feedtypeid);
+            this.Fill(QUERY.GET_ALL_FEEDBACKTYPEID, this.paramCollection, table);
             if(table.Rows.Count>0)
                 Feedback.Mapping(lstfeedback, table);
             return lstfeedback;
@@ -113,7 +113,7 @@ namespace ShoppingCart.DataAccess
             this.paramCollection[1] = new SqlParameter("Answer", feed.Answer.Trim());
             this.paramCollection[2] = new SqlParameter("UserId", feed.UserCheck.UserId);
             this.paramCollection[3] = new SqlParameter("FeedTypeId", feed.FeedType.FeedTypeId);
-            return this.ExecuteNonQuery(Query.INSERT_FEEDBACK, paramCollection);
+            return this.ExecuteNonQuery(QUERY.INSERT_FEEDBACK, paramCollection);
         }
 
         /// <summary>
@@ -144,13 +144,13 @@ namespace ShoppingCart.DataAccess
         /// </summary>
         /// <param name="feedid">int</param>
         /// <returns>Feedback</returns>
-        public Feedback GetDetailFeedbackById(int feedid)
+        public Feedback GetFeedbackByFeedId(int feedid)
         {
             Feedback feed= new Feedback();
             this.paramCollection = new SqlParameter[1];
             DataTable table = new DataTable();
             this.paramCollection[0] = new SqlParameter("FeedId", feedid);
-            this.Fill(Query.GET_FEEDBACK_BY_FEEDID,this.paramCollection, table);
+            this.Fill(QUERY.GET_FEEDBACK_BY_FEEDID, this.paramCollection, table);
             if (table.Rows.Count > 0)
             {
                 Feedback.Mapping(feed, table.Rows[0]);
@@ -169,7 +169,7 @@ namespace ShoppingCart.DataAccess
             this.paramCollection[0] = new SqlParameter("Question", feed.Question.Trim());
             this.paramCollection[1] = new SqlParameter("Answer", feed.Answer.Trim());
             this.paramCollection[2] = new SqlParameter("FeedId", feed.FeedId);
-            return this.ExecuteNonQuery(Query.UPDATE_FEEDBACK, paramCollection);
+            return this.ExecuteNonQuery(QUERY.UPDATE_FEEDBACK, paramCollection);
         }
 
 
@@ -181,7 +181,7 @@ namespace ShoppingCart.DataAccess
         public Boolean DeleteFeedbackById(int id)
         {
             this.paramCollection = new SqlParameter[1];
-            return this.ExecuteNonQuery(Query.DELETE_FEEDBACK, paramCollection);
+            return this.ExecuteNonQuery(QUERY.DELETE_FEEDBACK, paramCollection);
         }
 
 

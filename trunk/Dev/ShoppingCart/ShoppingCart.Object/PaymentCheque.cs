@@ -19,6 +19,10 @@ namespace ShoppingCart.Object
         public PaymentCheque()
         {
             releasedate = new DateTime();
+            title = "";
+            releaseplace = "";
+            bankname = "";
+            account = "";
         }
 
         public String Title
@@ -92,20 +96,21 @@ namespace ShoppingCart.Object
             {
                 PaymentType.Mapping(obj.PayType, row);
                 StatusPaid.Mapping(obj.Status, row);
-            
-                if (row[ColumnName.PAYMENTDETAIL_TITLE] != null)
+
+                if (row[ColumnName.PAYMENTDETAIL_TITLE] != null && row[ColumnName.PAYMENTDETAIL_TITLE].ToString()!="")
                     obj.Title = row[ColumnName.PAYMENTDETAIL_TITLE].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_RELEASEDATE] != null)
+                if (row[ColumnName.PAYMENTDETAIL_RELEASEDATE] != null && row[ColumnName.PAYMENTDETAIL_RELEASEDATE].ToString()!="")
                     obj.ReleaseDate = DateHelper.Mapping(row[ColumnName.PAYMENTDETAIL_RELEASEDATE].ToString());
-                if (row[ColumnName.PAYMENTDETAIL_RELEASEPLACE] != null)
+                if (row[ColumnName.PAYMENTDETAIL_RELEASEPLACE] != null && row[ColumnName.PAYMENTDETAIL_RELEASEPLACE].ToString()!="")
                     obj.ReleasePlace =row[ColumnName.PAYMENTDETAIL_RELEASEPLACE].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_BANKNAME] != null)
+                if (row[ColumnName.PAYMENTDETAIL_BANKNAME] != null&&row[ColumnName.PAYMENTDETAIL_BANKNAME].ToString()!="")
                     obj.ReleasePlace =row[ColumnName.PAYMENTDETAIL_BANKNAME].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_ACCOUNT] != null)
+                if (row[ColumnName.PAYMENTDETAIL_ACCOUNT] != null && row[ColumnName.PAYMENTDETAIL_ACCOUNT].ToString()!="")
                     obj.Account = row[ColumnName.PAYMENTDETAIL_ACCOUNT].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_PAY] != null)
+                if (row[ColumnName.PAYMENTDETAIL_PAY] != null && row[ColumnName.PAYMENTDETAIL_PAY].ToString()!="")
                     obj.PayMoney = row[ColumnName.PAYMENTDETAIL_PAY].ToString();
-        
+                if (row[ColumnName.PAYMENTDETAIL_PAYDETAILID] != null && row[ColumnName.PAYMENTDETAIL_PAYDETAILID].ToString() != "")
+                    obj.PayId = Convert.ToInt32(row[ColumnName.PAYMENTDETAIL_PAYDETAILID].ToString());
 
             }
             catch (Exception e)

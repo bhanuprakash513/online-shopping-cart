@@ -17,8 +17,12 @@ namespace ShoppingCart.Common
 
         public static int FAQ_TYPE_ID = 1;
         public static int FEEDBACK_TYPE_ID = 2;
-       
-        
 
+        public static int PAYMENTTYPE_CC = 3;
+        public static int PAYMENTTYPE_DD = 2;
+        public static int PAYMENTTYPE_VPP = 4;
+        public static int PAYMENTTYPE_CHEQUE = 1;
+        
     }
 }
+

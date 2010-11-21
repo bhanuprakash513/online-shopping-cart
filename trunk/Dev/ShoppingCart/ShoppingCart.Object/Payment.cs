@@ -6,7 +6,7 @@ using ShoppingCart.Common;
 
 namespace ShoppingCard.Object
 {
-   public abstract class Payment
+   public class Payment
     {
        private int payid;
        private PaymentType paytype;
@@ -17,6 +17,7 @@ namespace ShoppingCard.Object
        {
            paytype = new PaymentType();
            status = new StatusPaid();
+           payid = -1;
        }
 
        public int PayId

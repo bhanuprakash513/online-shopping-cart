@@ -11,6 +11,12 @@ namespace ShoppingCard.Object
         private int roleid;
         private string rolename;
 
+        public Role()
+        {
+            roleid = -1;
+            rolename = "";
+        }
+
         public int RoleId
         {
             get
@@ -45,10 +51,10 @@ namespace ShoppingCard.Object
             
             try
             {
-                
-                if(row[ColumnName.ROLE_ROLEID]!=null)
+
+                if (row[ColumnName.ROLE_ROLEID] != null && row[ColumnName.ROLE_ROLEID].ToString()!="")
                     obj.RoleId = Convert.ToInt32(row[ColumnName.ROLE_ROLEID].ToString());
-                if(row[ColumnName.ROLE_ROLENAME]!=null)
+                if (row[ColumnName.ROLE_ROLENAME] != null && row[ColumnName.ROLE_ROLENAME].ToString()!="")
                     obj.RoleName = row[ColumnName.ROLE_ROLENAME].ToString();
             
             }

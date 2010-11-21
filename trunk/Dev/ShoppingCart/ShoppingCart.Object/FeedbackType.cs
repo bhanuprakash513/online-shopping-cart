@@ -11,6 +11,12 @@ namespace ShoppingCard.Object
          private int feedtypeid;
          private string feedtypename;
 
+         public FeedbackType()
+         {
+             feedtypeid = -1;
+             feedtypename = "";
+         }
+
          public int FeedTypeId
          {
              get 
@@ -44,9 +50,9 @@ namespace ShoppingCard.Object
          {
              try
              {
-                 if (row[ColumnName.FEEDBACKTYPE_FEEDTYPEID]!=null)
+                 if (row[ColumnName.FEEDBACKTYPE_FEEDTYPEID] != null && row[ColumnName.FEEDBACKTYPE_FEEDTYPEID].ToString()!="")
                     obj.FeedTypeId = Convert.ToInt32(row[ColumnName.FEEDBACKTYPE_FEEDTYPEID].ToString());
-                 if(row[ColumnName.FEEDBACKTYPE_FEEDTYPENAME]!=null)
+                if (row[ColumnName.FEEDBACKTYPE_FEEDTYPENAME] != null && row[ColumnName.FEEDBACKTYPE_FEEDTYPENAME].ToString()!="")
                     obj.FeedTypeName = row[ColumnName.FEEDBACKTYPE_FEEDTYPENAME].ToString();
              }
              catch (Exception e)
