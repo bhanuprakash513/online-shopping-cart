@@ -16,6 +16,15 @@ namespace ShoppingCart.Object
         private string releaseplace;
         private string drawername;
 
+        public PaymentDD()
+        {
+            title = "";
+            payway = "";
+            payplace = "";
+            payername = "";
+            releaseplace = "";
+            drawername = "";
+        }
 
         public String Title
         {
@@ -99,19 +108,19 @@ namespace ShoppingCart.Object
                 PaymentType.Mapping(obj.PayType, row);
                 StatusPaid.Mapping(obj.Status, row);
 
-                if (row[ColumnName.PAYMENTDETAIL_TITLE] != null)
+                if (row[ColumnName.PAYMENTDETAIL_TITLE] != null && row[ColumnName.PAYMENTDETAIL_TITLE].ToString()!="")
                     obj.Title = row[ColumnName.PAYMENTDETAIL_TITLE].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_PAYWAY] != null)
+                if (row[ColumnName.PAYMENTDETAIL_PAYWAY] != null&&row[ColumnName.PAYMENTDETAIL_PAYWAY].ToString()!="")
                     obj.PayWay = row[ColumnName.PAYMENTDETAIL_PAYWAY].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_RELEASEPLACE] != null)
+                if (row[ColumnName.PAYMENTDETAIL_RELEASEPLACE] != null && row[ColumnName.PAYMENTDETAIL_RELEASEPLACE].ToString()!="")
                     obj.ReleasePlace =row[ColumnName.PAYMENTDETAIL_RELEASEPLACE].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_PAYPLACE] != null)
+                if (row[ColumnName.PAYMENTDETAIL_PAYPLACE] != null&&row[ColumnName.PAYMENTDETAIL_PAYPLACE].ToString()!="")
                     obj.PayPlace =row[ColumnName.PAYMENTDETAIL_PAYPLACE].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_PAYERNAME] != null)
+                if (row[ColumnName.PAYMENTDETAIL_PAYERNAME] != null && row[ColumnName.PAYMENTDETAIL_PAYERNAME].ToString()!="")
                     obj.PayerName = row[ColumnName.PAYMENTDETAIL_PAYERNAME].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_DRAWERNAME] != null)
+                if (row[ColumnName.PAYMENTDETAIL_DRAWERNAME] != null && row[ColumnName.PAYMENTDETAIL_DRAWERNAME].ToString()!="")
                     obj.drawername = row[ColumnName.PAYMENTDETAIL_DRAWERNAME].ToString();
-                if (row[ColumnName.PAYMENTDETAIL_PAY] != null)
+                if (row[ColumnName.PAYMENTDETAIL_PAY] != null && row[ColumnName.PAYMENTDETAIL_PAY].ToString()!="")
                     obj.PayMoney = row[ColumnName.PAYMENTDETAIL_PAY].ToString();
    
             }

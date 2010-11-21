@@ -17,6 +17,9 @@ namespace ShoppingCart.Object
         public PaymentCC()
         {
             cardbank = new CardType();
+            ccnumber = "";
+            cvv = "";
+            securitynumber = "";
         }
 
         public CardType CardBank
@@ -79,18 +82,18 @@ namespace ShoppingCart.Object
                 PaymentType.Mapping(obj.PayType, row);
                 StatusPaid.Mapping(obj.Status, row);
                 CardType.Mapping(obj.CardBank, row);
-                if (row[ColumnName.PAYMENTDETAIL_CCNUMBER] != null)
-                    obj.CCNumber=row[ColumnName.PAYMENTDETAIL_CCNUMBER].ToString(); 
-                if (row[ColumnName.PAYMENTDETAIL_CVV] != null)
+                if (row[ColumnName.PAYMENTDETAIL_CCNUMBER] != null && row[ColumnName.PAYMENTDETAIL_CCNUMBER].ToString()!="")
+                    obj.CCNumber=row[ColumnName.PAYMENTDETAIL_CCNUMBER].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_CVV] != null && row[ColumnName.PAYMENTDETAIL_CVV].ToString()!="")
                     obj.CCNumber=row[ColumnName.PAYMENTDETAIL_CVV].ToString();
 
-                if (row[ColumnName.PAYMENTDETAIL_SECURITYNUMBER] != null)
+                if (row[ColumnName.PAYMENTDETAIL_SECURITYNUMBER] != null && row[ColumnName.PAYMENTDETAIL_SECURITYNUMBER].ToString()!="")
                     obj.CCNumber = row[ColumnName.PAYMENTDETAIL_SECURITYNUMBER].ToString();
 
-               
-                if (row[ColumnName.PAYMENTDETAIL_PAYDETAILID] != null)
+
+                if (row[ColumnName.PAYMENTDETAIL_PAYDETAILID] != null && row[ColumnName.PAYMENTDETAIL_PAYDETAILID].ToString()!="")
                     obj.PayId = Convert.ToInt32(row[ColumnName.PAYMENTDETAIL_PAYDETAILID]);
-                if (row[ColumnName.PAYMENTDETAIL_PAY] != null)
+                if (row[ColumnName.PAYMENTDETAIL_PAY] != null && row[ColumnName.PAYMENTDETAIL_PAY].ToString()!="")
                     obj.PayMoney = row[ColumnName.PAYMENTDETAIL_PAY].ToString();
  
             }

@@ -12,6 +12,13 @@ namespace ShoppingCard.Object
        private string deliveryname;
        private string deliverycost;
 
+       public DeliveryType()
+       {
+           deliveryid = '\0';
+           deliveryname = "";
+           deliverycost = "0";
+       }
+
        public char DeliveryId
        {
            get
@@ -56,13 +63,13 @@ namespace ShoppingCard.Object
 
            try
            {
-                if(row[ColumnName.DELIVERY_DELIVERYID]!=null)
+               if (row[ColumnName.DELIVERY_DELIVERYID] != null && row[ColumnName.DELIVERY_DELIVERYID].ToString()!="")
                     obj.DeliveryId=Convert.ToChar(row[ColumnName.DELIVERY_DELIVERYID]);
-                    
-                if(row[ColumnName.DELIVERY_DELIVERYNAME]!=null)
+
+                if (row[ColumnName.DELIVERY_DELIVERYNAME] != null && row[ColumnName.DELIVERY_DELIVERYNAME].ToString()!="")
                     obj.DeliveryName=row[ColumnName.DELIVERY_DELIVERYNAME].ToString();
 
-                if (row[ColumnName.DELIVERY_DELIVERYCOST] != null)
+                if (row[ColumnName.DELIVERY_DELIVERYCOST] != null && row[ColumnName.DELIVERY_DELIVERYCOST].ToString()!="")
                     obj.DeliveryCost = row[ColumnName.DELIVERY_DELIVERYCOST].ToString();
 
            }

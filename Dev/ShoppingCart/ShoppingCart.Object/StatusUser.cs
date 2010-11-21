@@ -11,6 +11,12 @@ namespace ShoppingCard.Object
         private int statusid;
         private string statusname;
 
+        public StatusUser()
+        {
+            statusid = -1;
+            statusname = "";
+        }
+
         public int StatusId
         {
             get
@@ -47,10 +53,10 @@ namespace ShoppingCard.Object
         { 
             try
             {
-                
-                if(row[ColumnName.STATUSUSER_STATUSUSERID]!=null)
+
+                if (row[ColumnName.STATUSUSER_STATUSUSERID] != null && row[ColumnName.STATUSUSER_STATUSUSERID].ToString()!="")
                     obj.StatusId = Convert.ToInt32(row[ColumnName.STATUSUSER_STATUSUSERID].ToString());
-                if(row[ColumnName.STATUSUSER_STATUSUSERNAME]!=null)
+                if (row[ColumnName.STATUSUSER_STATUSUSERNAME] != null && row[ColumnName.STATUSUSER_STATUSUSERNAME].ToString()!="")
                     obj.StatusName = row[ColumnName.STATUSUSER_STATUSUSERNAME].ToString();
             
             }

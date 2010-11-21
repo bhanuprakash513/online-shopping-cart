@@ -11,6 +11,12 @@ namespace ShoppingCard.Object
         private int paytypeid;
         private string paytypename;
 
+        public PaymentType()
+        {
+            paytypeid = -1;
+            paytypename = "";
+        }
+
         public int PayTypeId
         {
             get
@@ -45,9 +51,9 @@ namespace ShoppingCard.Object
 
             try
             {
-                if (row[ColumnName.PAYMENTTYPE_PAYTYPEID] != null)
+                if (row[ColumnName.PAYMENTTYPE_PAYTYPEID] != null && row[ColumnName.PAYMENTTYPE_PAYTYPEID].ToString()!="")
                     obj.PayTypeId = Convert.ToInt32(row[ColumnName.PAYMENTTYPE_PAYTYPEID].ToString());
-                if (row[ColumnName.PAYMENTTYPE_PAYTYPENAME] != null)
+                if (row[ColumnName.PAYMENTTYPE_PAYTYPENAME] != null && row[ColumnName.PAYMENTTYPE_PAYTYPENAME].ToString()!="")
                     obj.PayTypeName = row[ColumnName.PAYMENTTYPE_PAYTYPENAME].ToString();
 
             }

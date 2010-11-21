@@ -22,6 +22,14 @@ namespace ShoppingCard.Object
         public User()
         {
             statususer = new StatusUser();
+            username = "";
+            userid = -1;
+            password = "";
+            fullname = "";
+            address = "";
+            email = "";
+            phonenumer = "";
+            gender = "";
             userrole = new Role();
         }
 
@@ -148,19 +156,19 @@ namespace ShoppingCard.Object
             {
                 StatusUser.Mapping(obj.StatusUser, row);
                 Role.Mapping(obj.UserRole, row);
-                if(row[ColumnName.USER_ADDRESS]!=null)
+                if (row[ColumnName.USER_ADDRESS] != null && row[ColumnName.USER_ADDRESS].ToString()!="")
                     obj.Address = row[ColumnName.USER_ADDRESS].ToString();
-                if(row[ColumnName.USER_EMAIL]!=null)
+                if (row[ColumnName.USER_EMAIL] != null && row[ColumnName.USER_EMAIL].ToString()!="")
                     obj.Email = row[ColumnName.USER_EMAIL].ToString();
-                if (row[ColumnName.USER_FULLNAME]!=null)
+                if (row[ColumnName.USER_FULLNAME] != null && row[ColumnName.USER_FULLNAME].ToString()!="")
                     obj.Fullname = row[ColumnName.USER_FULLNAME].ToString();
-                if(row[ColumnName.USER_GENDER]!=null)
+                if (row[ColumnName.USER_GENDER] != null && row[ColumnName.USER_GENDER].ToString()!="")
                     obj.Gender = row[ColumnName.USER_GENDER].ToString();
-                if(row[ColumnName.USER_PHONENUMBER]!=null)
+                if (row[ColumnName.USER_PHONENUMBER] != null && row[ColumnName.USER_PHONENUMBER].ToString()!="")
                     obj.PhoneNumer = row[ColumnName.USER_PHONENUMBER].ToString();
-                if(row[ColumnName.USER_USERID]!=null)
+                if (row[ColumnName.USER_USERID] != null && row[ColumnName.USER_USERID].ToString()!="")
                     obj.UserId = Convert.ToInt32(row[ColumnName.USER_USERID].ToString());
-                if(row[ColumnName.USER_USERNAME]!=null)
+                if (row[ColumnName.USER_USERNAME] != null && row[ColumnName.USER_USERNAME].ToString()!="")
                     obj.UserName = row[ColumnName.USER_USERNAME].ToString();
             }
             catch (Exception e)

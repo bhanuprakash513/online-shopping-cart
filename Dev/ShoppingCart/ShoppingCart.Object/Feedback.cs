@@ -17,6 +17,9 @@ namespace ShoppingCard.Object
 
         public Feedback()
         {
+            feedid = -1;
+            question = "";
+            answer = "";
             feedtype = new FeedbackType();
             datewrite = new DateTime();
             usercheck = new User();
@@ -101,14 +104,14 @@ namespace ShoppingCard.Object
             try
             {
                 User.Mapping(obj.UserCheck,row);
-                if (row[ColumnName.FEEDBACK_FEEDID] != null)
+                if (row[ColumnName.FEEDBACK_FEEDID] != null && row[ColumnName.FEEDBACK_FEEDID].ToString()!="")
                     obj.FeedId = Convert.ToInt32(row[ColumnName.FEEDBACK_FEEDID].ToString());
-                if (row[ColumnName.FEEDBACK_QUESTION]!=null)
+                if (row[ColumnName.FEEDBACK_QUESTION] != null && row[ColumnName.FEEDBACK_QUESTION].ToString()!="")
                     obj.Question = row[ColumnName.FEEDBACK_QUESTION].ToString();
-                if (row[ColumnName.FEEDBACK_ANSWER]!=null)
+                if (row[ColumnName.FEEDBACK_ANSWER] != null && row[ColumnName.FEEDBACK_ANSWER].ToString()!="")
                     obj.Answer = row[ColumnName.FEEDBACK_ANSWER].ToString() ;
                 FeedbackType.Mapping(obj.FeedType, row);
-                if (row[ColumnName.FEEDBACK_DATEWRITE] != null)
+                if (row[ColumnName.FEEDBACK_DATEWRITE] != null && row[ColumnName.FEEDBACK_DATEWRITE].ToString()!="")
                     obj.DateWrite = DateHelper.Mapping(row[ColumnName.FEEDBACK_DATEWRITE].ToString());
           
             }

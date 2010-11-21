@@ -10,7 +10,13 @@ namespace ShoppingCard.Object
     {
        private int statusdeliveryid;
        private string statusdeliveryname;
-       
+
+       public StatusDelivery()
+       {
+           statusdeliveryid = -1;
+           statusdeliveryname = "";
+       }
+
        public int StatusDeliveryId
        {
            get 
@@ -43,10 +49,10 @@ namespace ShoppingCard.Object
        {
            try
            {
-               if (row[ColumnName.STATUSDELIVERY_STATUSDELIVERYID] != null)
+               if (row[ColumnName.STATUSDELIVERY_STATUSDELIVERYID] != null && row[ColumnName.STATUSDELIVERY_STATUSDELIVERYID].ToString()!="")
                    obj.StatusDeliveryId = Convert.ToInt32(row[ColumnName.STATUSDELIVERY_STATUSDELIVERYID]);
 
-               if (row[ColumnName.STATUSDELIVERY_STATUSDELIVERYNAME] != null)
+               if (row[ColumnName.STATUSDELIVERY_STATUSDELIVERYNAME] != null && row[ColumnName.STATUSDELIVERY_STATUSDELIVERYNAME].ToString()!="")
                    obj.StatusDeliveryName = row[ColumnName.STATUSDELIVERY_STATUSDELIVERYID].ToString();
            }
            catch (Exception e)

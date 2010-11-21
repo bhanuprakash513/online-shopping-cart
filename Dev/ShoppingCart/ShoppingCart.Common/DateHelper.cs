@@ -21,5 +21,10 @@ namespace ShoppingCart.Common
             }
             return date;
         }
+
+        public static String Mapping(DateTime datetime)
+        {
+            return datetime.Year.ToString() + "/" + datetime.Month.ToString() + "/" + datetime.Day.ToString();
+        }
     }
 }
