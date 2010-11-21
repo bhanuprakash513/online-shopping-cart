@@ -1,14 +1,14 @@
 /***********************************************************
-* Purpose : Update Payment Detail
+* Purpose : Update Payment Detail By PayDetailId
 * Author : Tam Kute
 * Date: 21-11-2010
-* Description: Update Payment Detail
+* Description: Update Payment Detail By PayDetailId
 ***********************************************************/
 
-IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_PaymentDetail_UpdatePaymentDetail]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
-DROP PROCEDURE [dbo].[SP_PaymentDetail_UpdatePaymentDetail]
+IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_PaymentDetail_UpdatePaymentDetailByPayDetailId]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+DROP PROCEDURE [dbo].[SP_PaymentDetail_UpdatePaymentDetailByPayDetailId]
 GO
-CREATE PROC [SP_PaymentDetail_UpdatePaymentDetail]
+CREATE PROC [SP_PaymentDetail_UpdatePaymentDetailByPayDetailId]
 	@PayDetailId int,
 	@PaymentName	nvarchar(50),
 	@CardTypeId		int,
