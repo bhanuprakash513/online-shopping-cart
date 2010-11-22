@@ -3,7 +3,9 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_OrderIt
 DROP PROCEDURE [dbo].[SP_OrderItem_GenerateOrderItemId]
 GO
 CREATE PROC [SP_OrderItem_GenerateOrderItemId]
-	@ProductId varchar(7)
+	@DeliveryId char,	
+	@ProductId varchar(7),
+	@IDNew varchar(16) output
 AS
 BEGIN
 	DECLARE @LengthId int;
@@ -12,6 +14,8 @@ BEGIN
 	DECLARE @Num int;
 	DECLARE @LengthStr int;
 	DECLARE @Count int;
+	DECLARE @MaxId int;
+	SET @MaxId=99999999;
 	WITH [TEMP] AS
 	(
 		SELECT Substring(OrderItemId,9,@LengthId)
@@ -24,10 +28,10 @@ BEGIN
 	SET @Num=CAST(@Str AS int)+1
 	SET @LengthStr=Len(@Str)
 	SET @Str=CAST(@Num AS int)
-	IF @Num=99999999
+	IF @Num>@MaxId
 	BEGIN
 
-		SELECT NULL
+		SET @IDNew = NULL
 	END
 	ELSE
 	BEGIN
@@ -40,6 +44,7 @@ BEGIN
 			SET	@Count=@Count-1
 			
 		END;
-		Print @Str
+		SET @IDNew = @DeliveryId+@ProductId+@Str
 	END
 END
+
