@@ -27,6 +27,7 @@ INSERT INTO DeliveryType(DeliveryId,DeliveryName,DeliveryCost) VALUES ('1','Post
 INSERT INTO DeliveryType(DeliveryId,DeliveryName,DeliveryCost) VALUES ('2','Manually','0')
 
 --StatusDelivery--
+INSERT INTO StatusDelivery(StatusDeliveryName) VALUES ('New')
 INSERT INTO StatusDelivery(StatusDeliveryName) VALUES ('Undone')
 INSERT INTO StatusDelivery(StatusDeliveryName) VALUES ('Done')
 INSERT INTO StatusDelivery(StatusDeliveryName) VALUES ('Return')
