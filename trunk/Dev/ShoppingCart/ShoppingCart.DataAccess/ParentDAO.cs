@@ -318,9 +318,8 @@ namespace ShoppingCart.DataAccess
                     cmd.CommandType = CommandType.StoredProcedure;
                     if (cmd.ExecuteNonQuery() == 0)
                         return false;
-                    else
+                    else 
                         return true;
-
                 }
             }
             catch (Exception e)

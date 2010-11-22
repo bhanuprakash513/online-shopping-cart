@@ -28,6 +28,8 @@ namespace ShoppingCart.Common
         public static int STATUSDELIVERY_DONE = 2;
         public static int STATUSDELIVERY_UNDONE = 1;
         public static int STATUSDELIVERY_RETURN = 3;
+    
+
         
     }
 }

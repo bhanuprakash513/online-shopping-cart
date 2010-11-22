@@ -72,5 +72,13 @@ namespace ShoppingCart.DataAccess
             }
         }
 
+        public static String SP_ORDERITEM_GENERATEORDERITEMID
+        {
+            get
+            {
+                return "SP_OrderItem_GenerateOrderItemId";
+            }
+        }
+
     }
 }
