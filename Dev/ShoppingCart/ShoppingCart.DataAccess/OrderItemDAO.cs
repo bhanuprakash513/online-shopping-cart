@@ -22,6 +22,16 @@ namespace ShoppingCart.DataAccess
 	                       " And Product.CatId=Category.CatId";
                 }
             }
+
+         
+
+            public static String DELETE_ORDERITEM_BY_ORDERID
+            {
+                get
+                {
+                    return "DELETE OrderItem WHERE OrderItemId=@OrderItemId";
+                }
+            }
         }
 
 
@@ -36,5 +46,36 @@ namespace ShoppingCart.DataAccess
                 OrderItem.Mapping(lstorderitem, table);
             return lstorderitem;
         }
+
+        public Boolean AddOrderItem(OrderItem orderitem)
+        {
+            this.paramCollection = new SqlParameter[4];
+
+            this.paramCollection[0] = new SqlParameter("OrderItemId",orderitem.OrderItemId);
+            this.paramCollection[1] = new SqlParameter("OrderId", orderitem.OrderId);
+            this.paramCollection[2] = new SqlParameter("ProductId", orderitem.ProductInfor.ProducId);
+            this.paramCollection[3] = new SqlParameter("OrderQuantity", orderitem.OrderQuanity);
+
+            return this.ExecuteStore(StoreDAO.SP_ORDERITEM_INSERTORDERITEM, paramCollection);
+        }
+
+        public Boolean UpdateOrderItemByOrderItemId(OrderItem orderitem)
+        {
+            this.paramCollection = new SqlParameter[3];
+
+            this.paramCollection[0] = new SqlParameter("OrderItemId", orderitem.OrderItemId);
+            this.paramCollection[1] = new SqlParameter("ProductId", orderitem.ProductInfor.ProducId);
+            this.paramCollection[2] = new SqlParameter("OrderQuantity", orderitem.OrderQuanity);
+
+            return this.ExecuteStore(StoreDAO.SP_ORDERITEM_UPDATEORDERITEM_BY_ORDERITEMID, paramCollection);
+        }
+
+        public Boolean DeleteOrderItemByOrderItemId(String orderitemid)
+        {
+            this.paramCollection = new SqlParameter[1];
+            this.paramCollection[0] = new SqlParameter("OrderItemId", orderitemid);
+            return this.ExecuteNonQuery(QUERY.DELETE_ORDERITEM_BY_ORDERID, paramCollection);
+        }
+
     }
 }

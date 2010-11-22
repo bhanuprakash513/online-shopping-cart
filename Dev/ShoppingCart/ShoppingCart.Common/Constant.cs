@@ -22,6 +22,12 @@ namespace ShoppingCart.Common
         public static int PAYMENTTYPE_DD = 2;
         public static int PAYMENTTYPE_VPP = 4;
         public static int PAYMENTTYPE_CHEQUE = 1;
+
+        public static int ID_FALSE = -1;
+
+        public static int STATUSDELIVERY_DONE = 2;
+        public static int STATUSDELIVERY_UNDONE = 1;
+        public static int STATUSDELIVERY_RETURN = 3;
         
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="StatusDeliveryDAO.cs" />
     <Compile Include="StatusPaidDAO.cs" />
     <Compile Include="StatusUserDAO.cs" />
+    <Compile Include="StoreDAO.cs" />
     <Compile Include="UserDAO.cs" />
   </ItemGroup>
   <ItemGroup>

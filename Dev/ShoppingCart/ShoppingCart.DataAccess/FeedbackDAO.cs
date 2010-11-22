@@ -12,7 +12,7 @@ namespace ShoppingCart.DataAccess
     {
         public static class QUERY
         {
-            public static String GET_ALL_FEEDBACKTYPEID
+            public static String GET_ALL
             {
                 get
                 {
@@ -20,7 +20,23 @@ namespace ShoppingCart.DataAccess
             " [User].Username,[User].Password,[User].Fullname,[User].Gender,[User].Address,[User].Email,[User].RoleId,[User].PhoneNumber,[User].StatusId, " +
             " FeedbackType.FeedTypeName,[Role].RoleName,StatusUser.StatusUserName " +
             " FROM Feedback,[User],FeedbackType,[Role],StatusUser " +
-            " WHERE [User].UserId=Feedback.UserId AND FeedbackType.FeedTypeId=Feedback.FeedTypeId AND [Role].RoleId=[User].RoleId AND StatusUser.StatusUserId=[User].StatusId AND FeedbackType.FeedTypeId=@FeedTypeId";
+            " WHERE [User].UserId=Feedback.UserId AND FeedbackType.FeedTypeId=Feedback.FeedTypeId AND [Role].RoleId=[User].RoleId AND StatusUser.StatusUserId=[User].StatusId ";
+                }
+            }
+
+            public static String GET_ALL_FEEDBACKTYPEID
+            {
+                get
+                {
+                    return GET_ALL + "  AND FeedbackType.FeedTypeId=@FeedTypeId";
+                }
+            }
+
+            public static String GET_ALL_FEEDBACK_BY_USERID
+            {
+                get
+                {
+                    return GET_ALL + " AND FeedbackType.FeedTypeId=" + Constant.FEEDBACK_TYPE_ID + " AND Feedback.UserId=@UserId ";
                 }
             }
 
@@ -157,6 +173,21 @@ namespace ShoppingCart.DataAccess
             }
             return feed;
         }
+
+        public List<Feedback> GetFeedbackByUserId(int userid)
+        {
+            List<Feedback> lstfeed = new List<Feedback>();
+            this.paramCollection = new SqlParameter[1];
+            DataTable table = new DataTable();
+            this.paramCollection[0] = new SqlParameter("UserId", userid);
+            this.Fill(QUERY.GET_ALL_FEEDBACK_BY_USERID, this.paramCollection, table);
+            if (table.Rows.Count > 0)
+            {
+                Feedback.Mapping(lstfeed, table);
+            }
+            return lstfeed;
+        }
+
 
         /// <summary>
         /// Update feedback by Id

@@ -59,6 +59,8 @@ namespace ShoppingCart.Common
         public static String ORDER_STATE = "State";
         public static String ORDER_ZIPCODE = "Zipcode";
         public static String ORDER_TOTALCOST = "TotalCost";
+        public static String ORDER_EXTRAMONEY = "ExtraMoney";
+        public static String ORDER_NOTE = "Note";
 
         //**************************ORDER ITEM************************************************
         public static String ORDERITEM_ORDERITEMID = "OrderItemId";
