@@ -53,7 +53,7 @@ namespace ShoppingCard.Object
                    obj.StatusDeliveryId = Convert.ToInt32(row[ColumnName.STATUSDELIVERY_STATUSDELIVERYID]);
 
                if (row[ColumnName.STATUSDELIVERY_STATUSDELIVERYNAME] != null && row[ColumnName.STATUSDELIVERY_STATUSDELIVERYNAME].ToString()!="")
-                   obj.StatusDeliveryName = row[ColumnName.STATUSDELIVERY_STATUSDELIVERYID].ToString();
+                   obj.StatusDeliveryName = row[ColumnName.STATUSDELIVERY_STATUSDELIVERYNAME].ToString();
            }
            catch (Exception e)
            {

@@ -33,6 +33,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColumnDetail.cs" />
     <Compile Include="ColumnName.cs" />
     <Compile Include="Constant.cs" />
     <Compile Include="Database.Designer.cs">

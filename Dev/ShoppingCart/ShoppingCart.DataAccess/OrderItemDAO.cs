@@ -4,6 +4,7 @@ using System.Text;
 using ShoppingCard.Object;
 using System.Data;
 using System.Data.SqlClient;
+using ShoppingCart.Common;
 
 namespace ShoppingCart.DataAccess
 {
@@ -32,6 +33,8 @@ namespace ShoppingCart.DataAccess
                     return "DELETE OrderItem WHERE OrderItemId=@OrderItemId";
                 }
             }
+
+         
         }
 
 
@@ -49,12 +52,10 @@ namespace ShoppingCart.DataAccess
 
         public Boolean AddOrderItem(OrderItem orderitem)
         {
-            this.paramCollection = new SqlParameter[4];
-
-            this.paramCollection[0] = new SqlParameter("OrderItemId",orderitem.OrderItemId);
-            this.paramCollection[1] = new SqlParameter("OrderId", orderitem.OrderId);
-            this.paramCollection[2] = new SqlParameter("ProductId", orderitem.ProductInfor.ProducId);
-            this.paramCollection[3] = new SqlParameter("OrderQuantity", orderitem.OrderQuanity);
+            this.paramCollection = new SqlParameter[3];
+            this.paramCollection[0] = new SqlParameter("OrderId", orderitem.OrderId);
+            this.paramCollection[1] = new SqlParameter("ProductId", orderitem.ProductInfor.ProducId);
+            this.paramCollection[2] = new SqlParameter("OrderQuantity", orderitem.OrderQuanity);
 
             return this.ExecuteStore(StoreDAO.SP_ORDERITEM_INSERTORDERITEM, paramCollection);
         }
@@ -77,5 +78,17 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(QUERY.DELETE_ORDERITEM_BY_ORDERID, paramCollection);
         }
 
+        public String GenerateOrderItemId(char deliveryid,String productid)
+        {
+            this.paramCollection = new SqlParameter[3]; 
+            this.paramCollection[0] = new SqlParameter("DeliveryId",deliveryid);
+            this.paramCollection[1] = new SqlParameter("ProductId",productid);
+            this.paramCollection[2] = new SqlParameter("IDNew",ColumnDetail.ORDERITEM_ORDERITEMID_TYPE,ColumnDetail.ORDERITEM_ORDERITEMID_LENGTH);
+            this.paramCollection[2].Direction = ParameterDirection.Output;
+            if (this.ExecuteStore(StoreDAO.SP_ORDERITEM_GENERATEORDERITEMID, paramCollection))
+                return paramCollection[2].Value.ToString();
+            else
+                return "";
+        }
     }
 }
