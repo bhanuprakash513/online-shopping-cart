@@ -19,7 +19,7 @@ BEGIN
 				StatusDeliveryId=@StatusDeliveryId
 	WHERE OrderId=@OrderId
 			
-	IF @StatusDeliveryId = 2
+	IF @StatusDeliveryId = 3
 	BEGIN
 		IF @ShippingDate = NULL OR @ShippingDate = ''
 			SET @ShippingDate=GETDATE()
@@ -30,7 +30,7 @@ BEGIN
 		WHERE OrderId=@OrderId
 		DECLARE array CURSOR FOR
 		(
-						SELECT OrderItem.OrderItemId,WarantyDay
+						SELECT OrderItem.OrderItemId,WarantyDay,[OrderItem].ProductId,OrderItem.OrderQuantity
 						FROM OrderItem,Product
 						WHERE OrderId=@OrderId And Product.ProductId=[OrderItem].ProductId  
 		)
@@ -38,21 +38,27 @@ BEGIN
 							
 				 DECLARE @OrderItemId varchar(16)
 				 DEClARE @WarantyDay int
-				 
-				 FETCH NEXT FROM array INTO @OrderItemId,@WarantyDay
+				 DECLARE @ProductId varchar(7)
+				 DECLARE @OrderQuantity int
+				 DECLARE @Count int
+				 FETCH NEXT FROM array INTO @OrderItemId,@WarantyDay,@ProductId,@OrderQuantity
 				 
 				 WHILE @@FETCH_STATUS=0
 				 BEGIN
-						
+					
+				 SELECT @Count=Quantity-@OrderQuantity FROM Product
+					 IF @Count>=0
+					 BEGIN
+						UPDATE OrderItem
+							SET ExWarrantyDate=DateAdd(dd,@WarantyDay,@ShippingDate) 
+						WHERE OrderItemId=@OrderItemId
 
-					UPdATE OrderItem
-						SET ExWarrantyDate=DateAdd(dd,@WarantyDay,@ShippingDate) 
-					Where OrderItemId=@OrderItemId
-
-
-				 
-					 FETCH NEXT FROM array INTO @OrderItemId,@WarantyDay
-				
+						UPDATE Product 
+							SET Product.Quantity=Product.Quantity-@OrderQuantity
+						WHERE Product.ProductId=@ProductId
+					 END 
+					FETCH NEXT FROM array INTO @OrderItemId,@WarantyDay,@ProductId,@OrderQuantity
+					
 				 END
 			   
 		CLOSE array 			
