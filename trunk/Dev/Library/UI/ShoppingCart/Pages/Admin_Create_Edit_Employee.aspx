@@ -32,7 +32,7 @@
    <asp:TableCell HorizontalAlign="left" Font-Size="11">
        <asp:Label ID="lbGender" runat="server" Text="Gender"></asp:Label>
    </asp:TableCell>
-   <asp:TableCell>
+   <asp:TableCell HorizontalAlign="Left">
        <asp:DropDownList ID="ddlGender" runat="server" Width="80" >
        <asp:ListItem>Male</asp:ListItem>
        <asp:ListItem>Female</asp:ListItem>
