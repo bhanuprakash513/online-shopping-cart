@@ -56,9 +56,9 @@ INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneN
 INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
 	VALUES ('employee','employee','Pham Hong Tam','Male','next into Hai address','ketuhanh27989@yahoo.com',2,'0906024094',1)
 INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
-	VALUES ('member','member','Tran Phan Quoc Hai','Male','under bridge','cltbquochai@yahoo.com',3,'0919097097',1)
+	VALUES ('member','member2','Tran Phan Quoc Hai','Male','under bridge','cltbquochai@yahoo.com',3,'0919097097',1)
 INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
-	VALUES ('member','member','Nguyen Duc Viet','Male','under bridge','ducviet@yahoo.com',3,'0919097097',1)
+	VALUES ('member2','member2','Nguyen Duc Viet','Male','under bridge','ducviet@yahoo.com',3,'0919097097',1)
 
 
 --Product--
