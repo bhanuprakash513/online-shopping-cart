@@ -16,37 +16,46 @@ AS
 BEGIN
 	UPDATE [Order]
 		SET		
-				StatusDeliveryId=@StatusDeliveryId,
-				ShippingDate=@ShippingDate
+				StatusDeliveryId=@StatusDeliveryId
 	WHERE OrderId=@OrderId
 			
-	DECLARE array CURSOR FOR
-	(
-					SELECT OrderItem.OrderItemId,WarantyDay
-					FROM OrderItem,Product
-					WHERE OrderId=@OrderId And Product.ProductId=[OrderItem].ProductId  
-	)
-	OPEN array 
-						
-			 DECLARE @OrderItemId varchar(16)
-			 DEClARE @WarantyDay int
-			 
-			 FETCH NEXT FROM array INTO @OrderItemId,@WarantyDay
-			 
-			 WHILE @@FETCH_STATUS=0
-			 BEGIN
-					
+	IF @StatusDeliveryId = 2
+	BEGIN
+		IF @ShippingDate = NULL OR @ShippingDate = ''
+			SET @ShippingDate=GETDATE()
 
-				UPdATE OrderItem
-					SET ExWarrantyDate=DateAdd(dd,@WarantyDay,@ShippingDate) 
-				Where OrderItemId=@OrderItemId
-
-
-			 
+		UPDATE [Order]
+		SET		
+				ShippingDate=@ShippingDate
+		WHERE OrderId=@OrderId
+		DECLARE array CURSOR FOR
+		(
+						SELECT OrderItem.OrderItemId,WarantyDay
+						FROM OrderItem,Product
+						WHERE OrderId=@OrderId And Product.ProductId=[OrderItem].ProductId  
+		)
+		OPEN array 
+							
+				 DECLARE @OrderItemId varchar(16)
+				 DEClARE @WarantyDay int
+				 
 				 FETCH NEXT FROM array INTO @OrderItemId,@WarantyDay
-			
-			 END
-		   
-	CLOSE array 			
-	DEALLOCATE array 
+				 
+				 WHILE @@FETCH_STATUS=0
+				 BEGIN
+						
+
+					UPdATE OrderItem
+						SET ExWarrantyDate=DateAdd(dd,@WarantyDay,@ShippingDate) 
+					Where OrderItemId=@OrderItemId
+
+
+				 
+					 FETCH NEXT FROM array INTO @OrderItemId,@WarantyDay
+				
+				 END
+			   
+		CLOSE array 			
+		DEALLOCATE array 
+	END
 END
