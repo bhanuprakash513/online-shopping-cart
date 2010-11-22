@@ -57,7 +57,7 @@ INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneN
 INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
 	VALUES ('employee','employee','Pham Hong Tam','Male','next into Hai address','ketuhanh27989@yahoo.com',2,'0906024094',1)
 INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
-	VALUES ('member','member2','Tran Phan Quoc Hai','Male','under bridge','cltbquochai@yahoo.com',3,'0919097097',1)
+	VALUES ('member1','member2','Tran Phan Quoc Hai','Male','under bridge','cltbquochai@yahoo.com',3,'0919097097',1)
 INSERT INTO [User](Username,Password,Fullname,Gender,Address,Email,RoleId,PhoneNumber,StatusId)
 	VALUES ('member2','member2','Nguyen Duc Viet','Male','under bridge','ducviet@yahoo.com',3,'0919097097',1)
 
@@ -115,9 +115,9 @@ VALUES
 
 
 ---------------------ORDERITEM----------------------------------
-INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES('1000000100000001',1,'0000001',1,DateAdd(dd,365,Getdate()))
-INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES('1000000200000001',1,'0000002',1,DateAdd(dd,365,Getdate()))
-INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate) VALUES('1000000300000001',1,'0000003',1,DateAdd(dd,365,Getdate()))
+INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate,Status) VALUES('1000000100000001',1,'0000001',1,DateAdd(dd,365,Getdate()),'A')
+INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate,Status) VALUES('1000000200000001',1,'0000002',1,DateAdd(dd,365,Getdate()),'A')
+INSERT INTO OrderItem(OrderItemId,OrderId,ProductId,OrderQuantity,ExWarrantyDate,Status) VALUES('1000000300000001',1,'0000003',1,DateAdd(dd,365,Getdate()),'A')
 
 
 
