@@ -11,6 +11,7 @@ BEGIN
 	DECLARE @LengthId int;
 		SET @LengthId=8;
 	DECLARE @Str varchar(16);
+	SET @Str=''
 	DECLARE @Num int;
 	DECLARE @LengthStr int;
 	DECLARE @Count int;
@@ -24,27 +25,37 @@ BEGIN
 		WHERE ProductId=@ProductId
 	) 
 	SELECT TOP 1 @Str=[TEMP].OrderItemId FROM [TEMP] ORDER BY [TEMP].OrderItemId DESC;
-	SET @Str=CAST (CAST(@Str AS int) As Varchar)
-	SET @Num=CAST(@Str AS int)+1
-	SET @LengthStr=Len(@Str)
-	SET @Str=CAST(@Num AS int)
-	IF @Num>@MaxId
+	IF @Str='' OR @Str=NULL
 	BEGIN
-
-		SET @IDNew = NULL
+		SET @IDNew = @DeliveryId+@ProductId+'00000001'
 	END
 	ELSE
 	BEGIN
-		SET @Count=@LengthId-@LengthStr
 
-		WHILE @Count != 0
+		SET @Str=CAST (CAST(@Str AS int) As Varchar)
+		SET @Num=CAST(@Str AS int)+1
+		SET @LengthStr=Len(@Str)
+		SET @Str=CAST(@Num AS int)
+		IF @Num>@MaxId
 		BEGIN
 
-			SET @Str='0'+@Str
-			SET	@Count=@Count-1
-			
-		END;
-		SET @IDNew = @DeliveryId+@ProductId+@Str
+			SET @IDNew = NULL
+		END
+		ELSE
+		BEGIN
+			SET @Count=@LengthId-@LengthStr
+
+			WHILE @Count != 0
+			BEGIN
+
+				SET @Str='0'+@Str
+				SET	@Count=@Count-1
+				
+			END;
+			SET @IDNew = @DeliveryId+@ProductId+@Str
+		END
+
 	END
+	
 END
 
