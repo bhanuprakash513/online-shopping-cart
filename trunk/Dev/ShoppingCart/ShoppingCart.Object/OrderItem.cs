@@ -44,7 +44,7 @@ namespace ShoppingCard.Object
                  orderid = value;
              }
          }
-         public Product Productinfor
+         public Product ProductInfor
          {
              get
              {
@@ -98,7 +98,7 @@ namespace ShoppingCard.Object
                     obj.OrderQuanity = Convert.ToInt32(row[ColumnName.ORDERITEM_ORDERQUANTITY].ToString());
                  if (row[ColumnName.ORDERITEM_EXWARRANTYDATE] != null && row[ColumnName.ORDERITEM_EXWARRANTYDATE].ToString() != "")
                     DateHelper.Mapping(row[ColumnName.ORDERITEM_EXWARRANTYDATE].ToString());
-                 Product.Mapping(obj.Productinfor, row);
+                 Product.Mapping(obj.ProductInfor, row);
 
              }
              catch (Exception e)

@@ -28,7 +28,9 @@ namespace ShoppingCard.Object
          private string zipcode;
          private string totalcode;
          private Country countryinfor;
-
+         private string extramoney;
+         private string note;
+         private Payment paymentinfor;
          public Order()
          {
              orderid = -1;
@@ -46,7 +48,9 @@ namespace ShoppingCard.Object
              state = "";
              zipcode = "";
              totalcode = "0";
+             paymentinfor = new PaymentCC();
              countryinfor = new Country();
+             extramoney = "0";
          }
 
          public int OrderId
@@ -81,6 +85,18 @@ namespace ShoppingCard.Object
              set
              {
                  paymentddinfor = value;
+             }
+         }
+
+         public Payment PaymentInfor
+         {
+             get
+             {
+                 return paymentinfor;
+             }
+             set
+             {
+                 paymentinfor = value;
              }
          }
 
@@ -266,6 +282,30 @@ namespace ShoppingCard.Object
                }
            }
 
+         public String ExtraMoney
+         {
+             get
+             {
+                 return extramoney;
+             }
+             set
+             {
+                 extramoney = value;
+             }
+         }
+
+         public String Note
+         {
+             get
+             {
+                 return note;
+             }
+             set
+             {
+                 note = value;
+             }
+         }
+
            /// <summary>
            /// Mapping object
            /// </summary>
@@ -308,6 +348,15 @@ namespace ShoppingCard.Object
                        obj.Zipcode = row[ColumnName.ORDER_ZIPCODE].ToString();
                    if (row[ColumnName.ORDER_TOTALCOST] != null && row[ColumnName.ORDER_TOTALCOST].ToString() != "")
                        obj.TotalCost = row[ColumnName.ORDER_TOTALCOST].ToString();
+                   if (row[ColumnName.ORDER_EXTRAMONEY] != null && row[ColumnName.ORDER_EXTRAMONEY].ToString() != "")
+                       obj.ExtraMoney = row[ColumnName.ORDER_EXTRAMONEY].ToString();
+
+                   if (row[ColumnName.ORDER_NOTE] != null && row[ColumnName.ORDER_NOTE].ToString() != "")
+                       obj.Note = row[ColumnName.ORDER_NOTE].ToString();
+
+                   
+                   
+
                    Country.Mapping(obj.CountryInfor, row);
 
 

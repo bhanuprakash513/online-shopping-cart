@@ -13,6 +13,7 @@ namespace ShoppingCart.Object
         private string ccnumber;
         private string cvv;
         private string securitynumber;
+        private DateTime expiration;
 
         public PaymentCC()
         {
@@ -68,6 +69,18 @@ namespace ShoppingCart.Object
             }
         }
 
+        public DateTime Expiration
+        {
+            get
+            {
+                return expiration;
+            }
+            set
+            {
+                expiration = value;
+            }
+        }
+
 
         /// <summary>
         /// Mapping object
@@ -95,6 +108,8 @@ namespace ShoppingCart.Object
                     obj.PayId = Convert.ToInt32(row[ColumnName.PAYMENTDETAIL_PAYDETAILID]);
                 if (row[ColumnName.PAYMENTDETAIL_PAY] != null && row[ColumnName.PAYMENTDETAIL_PAY].ToString()!="")
                     obj.PayMoney = row[ColumnName.PAYMENTDETAIL_PAY].ToString();
+                if (row[ColumnName.PAYMENTDETAIL_EXPIRATIONDATE] != null && row[ColumnName.PAYMENTDETAIL_EXPIRATIONDATE].ToString() != "")
+                    obj.Expiration = DateHelper.Mapping(row[ColumnName.PAYMENTDETAIL_EXPIRATIONDATE].ToString());
  
             }
             catch (Exception e)

@@ -87,7 +87,7 @@ namespace ShoppingCart.DataAccess
                     this.MappingParameters(cmd.Parameters, param);
 
                     adapter.SelectCommand = cmd;
-                    
+                    adapter.SelectCommand.CommandType = CommandType.Text;
                     adapter.Fill(dt);
                     
 
@@ -95,7 +95,7 @@ namespace ShoppingCart.DataAccess
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace.ToString());
+                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -103,6 +103,7 @@ namespace ShoppingCart.DataAccess
             }
             return 0;
         }
+
 
 
         /// <summary>
@@ -122,7 +123,7 @@ namespace ShoppingCart.DataAccess
                     this.MappingParameters(cmd.Parameters, null);
 
                     adapter.SelectCommand = cmd;
-
+                    adapter.SelectCommand.CommandType = CommandType.Text;
                     adapter.Fill(dt);
 
 
@@ -130,7 +131,7 @@ namespace ShoppingCart.DataAccess
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace.ToString());
+                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -156,7 +157,7 @@ namespace ShoppingCart.DataAccess
                 {
                     cmd = new SqlCommand(command,conn);
                     this.MappingParameters(cmd.Parameters, param);
-
+                    cmd.CommandType = CommandType.Text;
                     if (cmd.ExecuteNonQuery() == 0)
                         return false;
                     else
@@ -166,7 +167,7 @@ namespace ShoppingCart.DataAccess
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace.ToString());
+                Console.WriteLine(e.Message);
                 return false;
             }
             finally
@@ -191,7 +192,7 @@ namespace ShoppingCart.DataAccess
                 {
                     cmd = new SqlCommand(command, conn);
                     this.MappingParameters(cmd.Parameters,null);
-
+                    cmd.CommandType = CommandType.Text;
                     if (cmd.ExecuteNonQuery() == 0)
                         return false;
                     else
@@ -201,7 +202,7 @@ namespace ShoppingCart.DataAccess
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.StackTrace.ToString());
+                Console.WriteLine(e.Message);
                 return false;
             }
             finally
@@ -222,6 +223,151 @@ namespace ShoppingCart.DataAccess
                 }
             }
 
+        }
+
+
+
+        /// <summary>
+        /// Fill du lieu vao table
+        /// </summary>
+        /// <param name="command">String</param>
+        /// <param name="param">SqlParameter[]</param>
+        /// <param name="dt">DataTable</param>
+        /// <returns>int</returns>
+        protected int FillStore(String command, SqlParameter[] param, DataTable dt)
+        {
+            try
+            {
+
+                if (InitConnect())
+                {
+                    cmd = new SqlCommand(command, conn);
+                    this.MappingParameters(cmd.Parameters, param);
+
+                    adapter.SelectCommand = cmd;
+                    adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adapter.Fill(dt);
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                CloseConnect();
+            }
+            return 0;
+        }
+
+
+
+        /// <summary>
+        /// Fill du lieu vao table
+        /// </summary>
+        /// <param name="command">String</param>
+        /// <param name="dt">DataTable</param>
+        /// <returns>int</returns>
+        protected int FillStore(String command, DataTable dt)
+        {
+            try
+            {
+
+                if (InitConnect())
+                {
+                    cmd = new SqlCommand(command, conn);
+                    this.MappingParameters(cmd.Parameters, null);
+
+                    adapter.SelectCommand = cmd;
+                    adapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+                    adapter.Fill(dt);
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                CloseConnect();
+            }
+            return 0;
+        }
+
+
+
+        /// <summary>
+        /// Thuc thi cau truy van
+        /// </summary>
+        /// <param name="command">String</param>
+        /// <param name="param">SqlParameter[]</param>
+        /// <returns>Boolean</returns>
+        protected Boolean ExecuteStore(String command, SqlParameter[] param)
+        {
+
+            try
+            {
+                if (InitConnect())
+                {
+                    cmd = new SqlCommand(command, conn);
+                    this.MappingParameters(cmd.Parameters, param);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (cmd.ExecuteNonQuery() == 0)
+                        return false;
+                    else
+                        return true;
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                CloseConnect();
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// Thuc thi cau truy van
+        /// </summary>
+        /// <param name="command">String</param>
+        /// <returns>Boolean</returns>
+        protected Boolean ExecuteStore(String command)
+        {
+
+            try
+            {
+                if (InitConnect())
+                {
+                    cmd = new SqlCommand(command, conn);
+                    this.MappingParameters(cmd.Parameters, null);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    if (cmd.ExecuteNonQuery() == 0)
+                        return false;
+                    else
+                        return true;
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+            finally
+            {
+                CloseConnect();
+            }
+            return false;
         }
 
     }

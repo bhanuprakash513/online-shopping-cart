@@ -9,9 +9,9 @@ using ShoppingCart.Object;
 
 namespace ShoppingCart.DataAccess
 {
-    class PaymentDetailDAO : ParentDAO
+    public class PaymentDetailDAO : ParentDAO
     {
-        public static class Query
+        public static class QUERY
         {
             public static String GET_PAYMENTDETAIL_BY_ORDERID
             {
@@ -30,7 +30,7 @@ namespace ShoppingCart.DataAccess
                 }
             }
 
-            
+           
         }
 
 
@@ -45,7 +45,7 @@ namespace ShoppingCart.DataAccess
             DataTable table=new DataTable();
             paramCollection = new SqlParameter[1];
             paramCollection[0] = new SqlParameter("OrderId",OrderId);
-            Fill(Query.GET_PAYMENTDETAIL_BY_ORDERID,paramCollection,table);
+            Fill(QUERY.GET_PAYMENTDETAIL_BY_ORDERID,paramCollection,table);
             if (table.Rows.Count > 0)
             {
                 if (table.Rows[0][ColumnName.ORDER_PAYTYPEID]!=null&&table.Rows[0][ColumnName.ORDER_PAYTYPEID].ToString() != "")
@@ -68,7 +68,7 @@ namespace ShoppingCart.DataAccess
             DataTable table=new DataTable();
             paramCollection = new SqlParameter[1];
             paramCollection[0] = new SqlParameter("OrderId",OrderId);
-            Fill(Query.GET_PAYMENTDETAIL_BY_ORDERID,paramCollection,table);
+            Fill(QUERY.GET_PAYMENTDETAIL_BY_ORDERID,paramCollection,table);
             if (table.Rows.Count > 0)
             {
                 if (table.Rows[0][ColumnName.ORDER_PAYTYPEID]!=null&&table.Rows[0][ColumnName.ORDER_PAYTYPEID].ToString() != "")
@@ -89,7 +89,7 @@ namespace ShoppingCart.DataAccess
             DataTable table = new DataTable();
             paramCollection = new SqlParameter[1];
             paramCollection[0] = new SqlParameter("OrderId", OrderId);
-            Fill(Query.GET_PAYMENTDETAIL_BY_ORDERID, paramCollection, table);
+            Fill(QUERY.GET_PAYMENTDETAIL_BY_ORDERID, paramCollection, table);
             if (table.Rows.Count > 0)
             {
                 if (table.Rows[0][ColumnName.ORDER_PAYTYPEID] != null && table.Rows[0][ColumnName.ORDER_PAYTYPEID].ToString() != "")
@@ -103,5 +103,156 @@ namespace ShoppingCart.DataAccess
             return obj;
 
         }
+
+        public Boolean AddPaymentDetail(PaymentCC payment)
+        {
+            this.paramCollection = new SqlParameter[16];
+
+            this.paramCollection[0] = new SqlParameter("PaymentName", payment.PayType.PayTypeName.Trim());
+            this.paramCollection[1] = new SqlParameter("CardTypeId",payment.CardBank.CardTypeId);
+            this.paramCollection[2] = new SqlParameter("Title","");
+            this.paramCollection[3] = new SqlParameter("ReleaseDate","");
+            this.paramCollection[4] = new SqlParameter("ReleasePlace","");
+            this.paramCollection[5] = new SqlParameter("BankName","");
+            this.paramCollection[6] = new SqlParameter("Account","");
+            this.paramCollection[7] = new SqlParameter("Pay",Convert.ToInt32(payment.PayMoney));
+            this.paramCollection[8] = new SqlParameter("PayPlace","");
+            this.paramCollection[9] = new SqlParameter("PayWay", "");
+            this.paramCollection[10] = new SqlParameter("ExpirationDate", DateHelper.Mapping(payment.Expiration));
+            this.paramCollection[11] = new SqlParameter("DrawerName","");
+            this.paramCollection[12] = new SqlParameter("PayerName","");
+            this.paramCollection[13] = new SqlParameter("CCNumber",payment.CCNumber.Trim());
+            this.paramCollection[14] = new SqlParameter("CVV", payment.CVV.Trim());
+            this.paramCollection[15] = new SqlParameter("SecurityNumber", payment.SecurityNumber.Trim());
+            
+
+            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
+        }
+
+        public Boolean AddPaymentDetail(PaymentDD payment)
+        {
+            this.paramCollection = new SqlParameter[16];
+
+            this.paramCollection[0] = new SqlParameter("PaymentName", payment.PayType.PayTypeName.Trim());
+            this.paramCollection[1] = new SqlParameter("CardTypeId", Constant.ID_FALSE);
+            this.paramCollection[2] = new SqlParameter("Title", payment.Title.Trim());
+            this.paramCollection[3] = new SqlParameter("ReleaseDate","");
+            this.paramCollection[4] = new SqlParameter("ReleasePlace", payment.ReleasePlace.Trim());
+            this.paramCollection[5] = new SqlParameter("BankName","");
+            this.paramCollection[6] = new SqlParameter("Account","");
+            this.paramCollection[7] = new SqlParameter("Pay", payment.PayMoney);
+            this.paramCollection[8] = new SqlParameter("PayPlace",payment.PayPlace.Trim());
+            this.paramCollection[9] = new SqlParameter("PayWay",payment.PayWay.Trim());
+            this.paramCollection[10] = new SqlParameter("DrawerName",payment.DrawerName.Trim());
+            this.paramCollection[11] = new SqlParameter("PayerName",payment.PayerName.Trim());
+            this.paramCollection[12] = new SqlParameter("CCNumber","");
+            this.paramCollection[13] = new SqlParameter("CVV","");
+            this.paramCollection[14] = new SqlParameter("SecurityNumber","");
+            this.paramCollection[15] = new SqlParameter("ExpirationDate","");
+
+            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
+        }
+
+        public Boolean AddPaymentDetail(PaymentCheque payment)
+        {
+
+            this.paramCollection = new SqlParameter[16];
+
+            this.paramCollection[0] = new SqlParameter("PaymentName",payment.PayType.PayTypeName.Trim());
+            this.paramCollection[1] = new SqlParameter("CardTypeId",Constant.ID_FALSE);
+            this.paramCollection[2] = new SqlParameter("Title",payment.Title.Trim());
+            this.paramCollection[3] = new SqlParameter("ReleaseDate",DateHelper.Mapping(payment.ReleaseDate));
+            this.paramCollection[4] = new SqlParameter("ReleasePlace",payment.ReleasePlace.Trim());
+            this.paramCollection[5] = new SqlParameter("BankName",payment.BankName.Trim());
+            this.paramCollection[6] = new SqlParameter("Account",payment.Account.Trim());
+            this.paramCollection[7] = new SqlParameter("Pay",payment.PayMoney);
+            this.paramCollection[8] = new SqlParameter("PayPlace","");
+            this.paramCollection[9] = new SqlParameter("PayWay", "");
+            this.paramCollection[10] = new SqlParameter("DrawerName","");
+            this.paramCollection[11] = new SqlParameter("PayerName","");
+            this.paramCollection[12] = new SqlParameter("CCNumber","");
+            this.paramCollection[13] = new SqlParameter("CVV","");
+            this.paramCollection[14] = new SqlParameter("SecurityNumber","");
+            this.paramCollection[15] = new SqlParameter("ExpirationDate","");
+
+            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
+        
+        }
+
+        public Boolean UpdatePaymentDetailByPayId(PaymentCC payment)
+        {
+            this.paramCollection = new SqlParameter[17];
+
+            this.paramCollection[0] = new SqlParameter("PaymentName", payment.PayType.PayTypeName.Trim());
+            this.paramCollection[1] = new SqlParameter("CardTypeId", payment.CardBank.CardTypeId);
+            this.paramCollection[2] = new SqlParameter("Title","");
+            this.paramCollection[3] = new SqlParameter("ReleaseDate", "");
+            this.paramCollection[4] = new SqlParameter("ReleasePlace", "");
+            this.paramCollection[5] = new SqlParameter("BankName", "");
+            this.paramCollection[6] = new SqlParameter("Account", "");
+            this.paramCollection[7] = new SqlParameter("Pay", payment.PayMoney);
+            this.paramCollection[8] = new SqlParameter("PayPlace", "");
+            this.paramCollection[9] = new SqlParameter("PayWay", "");
+            this.paramCollection[10] = new SqlParameter("DrawerName", "");
+            this.paramCollection[11] = new SqlParameter("PayerName", "");
+            this.paramCollection[12] = new SqlParameter("CCNumber", payment.CCNumber.Trim());
+            this.paramCollection[13] = new SqlParameter("CVV", payment.CVV.Trim());
+            this.paramCollection[14] = new SqlParameter("SecurityNumber", payment.SecurityNumber.Trim());
+            this.paramCollection[15] = new SqlParameter("ExpirationDate", DateHelper.Mapping(payment.Expiration));
+            this.paramCollection[16] = new SqlParameter("PayDetailid", payment.PayId);
+            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_UPDATEPAYMENTDETAIL_BY_PAYDETAILID, paramCollection);
+        }
+
+        public Boolean UpdatePaymentDetailByPayId(PaymentDD payment)
+        {
+            this.paramCollection = new SqlParameter[17];
+
+            this.paramCollection[0] = new SqlParameter("PaymentName", payment.PayType.PayTypeName.Trim());
+            this.paramCollection[1] = new SqlParameter("CardTypeId", Constant.ID_FALSE);
+            this.paramCollection[2] = new SqlParameter("Title", payment.Title.Trim());
+            this.paramCollection[3] = new SqlParameter("ReleaseDate", "");
+            this.paramCollection[4] = new SqlParameter("ReleasePlace", payment.ReleasePlace.Trim());
+            this.paramCollection[5] = new SqlParameter("BankName", "");
+            this.paramCollection[6] = new SqlParameter("Account", "");
+            this.paramCollection[7] = new SqlParameter("Pay", payment.PayMoney);
+            this.paramCollection[8] = new SqlParameter("PayPlace", payment.PayPlace.Trim());
+            this.paramCollection[9] = new SqlParameter("PayWay", payment.PayWay);
+            this.paramCollection[10] = new SqlParameter("DrawerName", payment.DrawerName.Trim());
+            this.paramCollection[11] = new SqlParameter("PayerName", payment.PayerName.Trim());
+            this.paramCollection[12] = new SqlParameter("CCNumber", "");
+            this.paramCollection[13] = new SqlParameter("CVV", "");
+            this.paramCollection[14] = new SqlParameter("SecurityNumber", "");
+            this.paramCollection[15] = new SqlParameter("ExpirationDate", "");
+            this.paramCollection[16] = new SqlParameter("PayDetailid", payment.PayId);
+
+            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_UPDATEPAYMENTDETAIL_BY_PAYDETAILID, paramCollection);
+        }
+
+        public Boolean UpdatePaymentDetailByPayId(PaymentCheque payment)
+        {
+            this.paramCollection = new SqlParameter[17];
+
+            this.paramCollection[0] = new SqlParameter("PaymentName", payment.PayType.PayTypeName.Trim());
+            this.paramCollection[1] = new SqlParameter("CardTypeId", Constant.ID_FALSE);
+            this.paramCollection[2] = new SqlParameter("Title", payment.Title.Trim());
+            this.paramCollection[3] = new SqlParameter("ReleaseDate", DateHelper.Mapping(payment.ReleaseDate));
+            this.paramCollection[4] = new SqlParameter("ReleasePlace", payment.ReleasePlace.Trim());
+            this.paramCollection[5] = new SqlParameter("BankName", payment.BankName.Trim());
+            this.paramCollection[6] = new SqlParameter("Account", payment.Account.Trim());
+            this.paramCollection[7] = new SqlParameter("Pay", payment.PayMoney);
+            this.paramCollection[8] = new SqlParameter("PayPlace", "");
+            this.paramCollection[9] = new SqlParameter("PayWay", "");
+            this.paramCollection[10] = new SqlParameter("DrawerName", "");
+            this.paramCollection[11] = new SqlParameter("PayerName", "");
+            this.paramCollection[12] = new SqlParameter("CCNumber", "");
+            this.paramCollection[13] = new SqlParameter("CVV", "");
+            this.paramCollection[14] = new SqlParameter("SecurityNumber", "");
+            this.paramCollection[15] = new SqlParameter("ExpirationDate", "");
+            this.paramCollection[16] = new SqlParameter("PayDetailid", payment.PayId);
+
+            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_UPDATEPAYMENTDETAIL_BY_PAYDETAILID, paramCollection);
+        }
+ 
+        
     }
 }
