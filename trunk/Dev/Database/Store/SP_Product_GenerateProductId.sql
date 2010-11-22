@@ -14,30 +14,37 @@ BEGIN
 	DECLARE @Count int;
 	DECLARE @MaxId int;
 	SET @MaxId=9999999
-
+	SET @Str=''
 	SELECT TOP 1 @Str=ProductId FROM Product ORDER BY ProductId DESC;
-
-	SET @Str=CAST (CAST(@Str AS int) As Varchar)
-	SET @Num=CAST(@Str AS int)+1
-	SET @LengthStr=Len(@Str)
-	SET @Str=CAST(@Num AS int)
-	IF @Num>@MaxId
+	IF @Str=''
 	BEGIN
-
-		SET @IDNew = NULL
+		SET @IDNew = '0000001'
 	END
 	ELSE
 	BEGIN
-		SET @Count=@LengthId-@LengthStr
-
-		WHILE @Count != 0
+	
+		SET @Str=CAST (CAST(@Str AS int) As Varchar)
+		SET @Num=CAST(@Str AS int)+1
+		SET @LengthStr=Len(@Str)
+		SET @Str=CAST(@Num AS int)
+		IF @Num>@MaxId
 		BEGIN
 
-			SET @Str='0'+@Str
-			SET	@Count=@Count-1
-			
-		END;
-		SET @IDNew = @Str
+			SET @IDNew = NULL
+		END
+		ELSE
+		BEGIN
+			SET @Count=@LengthId-@LengthStr
+
+			WHILE @Count != 0
+			BEGIN
+
+				SET @Str='0'+@Str
+				SET	@Count=@Count-1
+				
+			END;
+			SET @IDNew = @Str
+		END
 	END
 END
 
