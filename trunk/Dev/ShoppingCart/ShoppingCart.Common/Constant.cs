@@ -25,9 +25,11 @@ namespace ShoppingCart.Common
 
         public static int ID_FALSE = -1;
 
-        public static int STATUSDELIVERY_DONE = 2;
-        public static int STATUSDELIVERY_UNDONE = 1;
-        public static int STATUSDELIVERY_RETURN = 3;
+        public static int STATUSDELIVERY_NEW = 1;
+        public static int STATUSDELIVERY_UNDONE = 2;
+        public static int STATUSDELIVERY_DONE = 3;
+        public static int STATUSDELIVERY_RETURN = 4;
+
     
 
         
