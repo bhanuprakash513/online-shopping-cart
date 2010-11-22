@@ -9,13 +9,16 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_OrderIt
 DROP PROCEDURE [dbo].[SP_OrderItem_InsertOrderItem]
 GO
 CREATE PROC [SP_OrderItem_InsertOrderItem]
-	@OrderItemId varchar(16),
 	@OrderId int,
 	@ProductId varchar(7),
 	@OrderQuantity int
 AS
-BEGIN
-
+BEGIN	
+	DECLARE @DeliveryId char
+	SELECT @DeliveryId=[Order].DeliveryId FROM [Order] WHERE [Order].OrderId=@OrderId
+	DECLARE @OrderItemId Varchar(16) 
+	EXEC [SP_OrderItem_GenerateOrderItemId] '1','0000002',@OrderItemId output
+	
 	INSERT INTO OrderItem
 	(
 		OrderItemId,
@@ -31,9 +34,4 @@ BEGIN
 		@OrderQuantity
 	)
 END
-
---	DECLARE @ExWarrantyDate datetime
---	DECLARE @OrderDate datetime
---	SELECT @OrderDate=OrderDate FROM [Order] WHERE @OrderId=[Order].OrderId
---	SELECT @ExWarrantyDate=DateAdd(dd,Product.WarantyDay,@OrderDate) FROM Product Where ProductId=@ProductId
 
