@@ -14,7 +14,7 @@ namespace ShoppingCard.Object
         private string fullname;
         private string address;
         private string email;
-        private string phonenumer;
+        private string phonenumber;
         private StatusUser statususer;
         private string gender;
         private Role userrole;
@@ -28,7 +28,7 @@ namespace ShoppingCard.Object
             fullname = "";
             address = "";
             email = "";
-            phonenumer = "";
+            phonenumber = "";
             gender = "";
             userrole = new Role();
         }
@@ -99,15 +99,15 @@ namespace ShoppingCard.Object
                 email = value;
             }
         }
-        public String PhoneNumer
+        public String PhoneNumber
         {
             get
             {
-                return phonenumer;
+                return phonenumber;
             }
             set
             {
-                phonenumer = value;
+                phonenumber = value;
             }
         }
         public StatusUser StatusUser
@@ -165,7 +165,7 @@ namespace ShoppingCard.Object
                 if (row[ColumnName.USER_GENDER] != null && row[ColumnName.USER_GENDER].ToString()!="")
                     obj.Gender = row[ColumnName.USER_GENDER].ToString();
                 if (row[ColumnName.USER_PHONENUMBER] != null && row[ColumnName.USER_PHONENUMBER].ToString()!="")
-                    obj.PhoneNumer = row[ColumnName.USER_PHONENUMBER].ToString();
+                    obj.PhoneNumber = row[ColumnName.USER_PHONENUMBER].ToString();
                 if (row[ColumnName.USER_USERID] != null && row[ColumnName.USER_USERID].ToString()!="")
                     obj.UserId = Convert.ToInt32(row[ColumnName.USER_USERID].ToString());
                 if (row[ColumnName.USER_USERNAME] != null && row[ColumnName.USER_USERNAME].ToString()!="")
