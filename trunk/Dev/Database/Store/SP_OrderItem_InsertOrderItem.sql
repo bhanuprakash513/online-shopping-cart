@@ -11,27 +11,30 @@ GO
 CREATE PROC [SP_OrderItem_InsertOrderItem]
 	@OrderId int,
 	@ProductId varchar(7),
-	@OrderQuantity int
+	@OrderQuantity int,
+	@Status char
 AS
 BEGIN	
 	DECLARE @DeliveryId char
 	SELECT @DeliveryId=[Order].DeliveryId FROM [Order] WHERE [Order].OrderId=@OrderId
 	DECLARE @OrderItemId Varchar(16) 
-	EXEC [SP_OrderItem_GenerateOrderItemId] '1','0000002',@OrderItemId output
+	EXEC [SP_OrderItem_GenerateOrderItemId] @DeliveryId,@ProductId,@OrderItemId output
 	
 	INSERT INTO OrderItem
 	(
 		OrderItemId,
 		OrderId,
 		ProductId,
-		OrderQuantity
+		OrderQuantity,
+		Status
 	)
 	VALUES
 	(
 		@OrderItemId,
 		@OrderId,
 		@ProductId,
-		@OrderQuantity
+		@OrderQuantity,
+		@Status
 	)
 END
 
