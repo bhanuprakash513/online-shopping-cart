@@ -20,7 +20,10 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
+        /// <summary>
+        /// Get All Country
+        /// </summary>
+        /// <returns>List</returns>
         public List<Country> GetAll()
         {
             List<Country> lstcountry = new List<Country>();

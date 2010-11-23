@@ -20,7 +20,10 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
+        /// <summary>
+        /// Get all
+        /// </summary>
+        /// <returns>List</returns>
         public List<Role> GetAll()
         {
             List<Role> lstrole = new List<Role>();

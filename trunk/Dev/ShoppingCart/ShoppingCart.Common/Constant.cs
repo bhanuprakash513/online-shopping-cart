@@ -30,8 +30,9 @@ namespace ShoppingCart.Common
         public static int STATUSDELIVERY_DONE = 3;
         public static int STATUSDELIVERY_RETURN = 4;
 
-    
-
+        public static char STATUS_ORDERITEM_NEW = 'A';
+        public static char STATUS_ORDERITEM_DELETE = 'D';
+        public static char STATUS_ORDERITEM_REPLACE = 'R';
         
     }
 }

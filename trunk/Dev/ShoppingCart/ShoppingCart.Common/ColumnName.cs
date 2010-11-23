@@ -68,6 +68,9 @@ namespace ShoppingCart.Common
         public static String ORDERITEM_PRODUCTID="ProductId";
         public static String ORDERITEM_ORDERQUANTITY="OrderQuantity";
         public static String ORDERITEM_EXWARRANTYDATE = "ExWarrantyDate";
+        public static String ORDERITEM_STATUS = "Status";
+        public static String ORDERITEM_PRODUCTREPLACE = "ProductReplace";
+        public static String ORDERITEM_QUANTITYREPLACE = "QuantityReplace";
 
         //**************************PAYMENT DETAIL************************************************
 

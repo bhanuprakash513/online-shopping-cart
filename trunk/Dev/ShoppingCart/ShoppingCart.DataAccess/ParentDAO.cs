@@ -15,7 +15,7 @@ namespace ShoppingCart.DataAccess
         protected String query;
         protected SqlParameter[] paramCollection;
         /// <summary>
-        /// Lay chuoi ket noi voi database
+        /// Connection string
         /// </summary>
         private String connectionString
         {
@@ -26,7 +26,7 @@ namespace ShoppingCart.DataAccess
         }
 
         /// <summary>
-        /// Khoi tao doi tuong
+        ///Init Object
         /// </summary>
         public ParentDAO()
         {
@@ -37,7 +37,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Khoi tao ket noi
+        /// Init Connect
         /// </summary>
         /// <returns>Boolean</returns>
         protected Boolean InitConnect()
@@ -56,7 +56,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Dong ket noi
+        /// Close Connect
         /// </summary>
         protected void CloseConnect()
         {
@@ -70,7 +70,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Fill du lieu vao table
+        /// Fill Table
         /// </summary>
         /// <param name="command">String</param>
         /// <param name="param">SqlParameter[]</param>
@@ -107,7 +107,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Fill du lieu vao table
+        /// Fill Table
         /// </summary>
         /// <param name="command">String</param>
         /// <param name="dt">DataTable</param>
@@ -143,7 +143,7 @@ namespace ShoppingCart.DataAccess
       
 
         /// <summary>
-        /// Thuc thi cau truy van
+        /// Execute Query
         /// </summary>
         /// <param name="command">String</param>
         /// <param name="param">SqlParameter[]</param>
@@ -179,7 +179,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Thuc thi cau truy van
+        /// Execute Query
         /// </summary>
         /// <param name="command">String</param>
         /// <returns>Boolean</returns>
@@ -212,7 +212,11 @@ namespace ShoppingCart.DataAccess
             return false;
         }
 
-
+        /// <summary>
+        /// Mapping parameter 
+        /// </summary>
+        /// <param name="paramCollection">SqlParameterCollection</param>
+        /// <param name="paramArray">SqlParameter[]</param>
         protected void MappingParameters(SqlParameterCollection paramCollection, SqlParameter[] paramArray)
         {
             if (paramArray != null)
@@ -228,7 +232,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Fill du lieu vao table
+        /// Fill table from store
         /// </summary>
         /// <param name="command">String</param>
         /// <param name="param">SqlParameter[]</param>
@@ -265,7 +269,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Fill du lieu vao table
+        /// Fill table from store
         /// </summary>
         /// <param name="command">String</param>
         /// <param name="dt">DataTable</param>
@@ -301,7 +305,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Thuc thi cau truy van
+        /// Execute from store
         /// </summary>
         /// <param name="command">String</param>
         /// <param name="param">SqlParameter[]</param>
@@ -336,7 +340,7 @@ namespace ShoppingCart.DataAccess
 
 
         /// <summary>
-        /// Thuc thi cau truy van
+        /// Execute from Store
         /// </summary>
         /// <param name="command">String</param>
         /// <returns>Boolean</returns>
