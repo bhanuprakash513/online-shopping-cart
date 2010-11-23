@@ -22,10 +22,10 @@
    </asp:TableCell>
    </asp:TableRow>
 <asp:TableRow>
-   <asp:TableCell>
+   <asp:TableCell HorizontalAlign="center">
        <asp:Button ID="btnOk" runat="server" Text="Ok" Width="60" />
    </asp:TableCell>
-   <asp:TableCell>
+   <asp:TableCell HorizontalAlign="center">
        <asp:Button ID="btnCancel" runat="server" Text="Cancel" Width="60" />
    </asp:TableCell>
    </asp:TableRow>
