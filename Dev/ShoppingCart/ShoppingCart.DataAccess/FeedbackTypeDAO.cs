@@ -20,7 +20,10 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
+        /// <summary>
+        /// Get All FeedbackType
+        /// </summary>
+        /// <returns>List</returns>
         public List<FeedbackType> GetAll()
         {
             List<FeedbackType> lstfeedbacktype = new List<FeedbackType>();

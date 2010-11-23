@@ -13,15 +13,46 @@ namespace ShoppingCard.Object
          private Product productinfo;
          private int orderquantity;
          private DateTime exwarrantydate;
+         private char status;
+         private Product productreplace;
+         private int quantityreplace;
+
          public OrderItem()
          {
              orderitemid ="";
              orderid = -1;
              productinfo = new Product();
              orderquantity = 0;
+             status = '\0';
              exwarrantydate = new DateTime();
+             productreplace = new Product();
+             quantityreplace = 0;
          }
-    
+         
+         public Product ProductReplace
+         {
+             get
+             {
+                 return productreplace;
+             }
+             set
+             {
+                 productreplace = value;
+             }
+         }
+
+         public int QuantityReplace
+         {
+             get
+             {
+                 return quantityreplace;
+             }
+             set
+             {
+                 quantityreplace = value;
+             }
+         }
+
          public String OrderItemId
          {
              get
@@ -67,6 +98,18 @@ namespace ShoppingCard.Object
              }
          }
 
+         public char Status
+         {
+             get
+             {
+                 return status;
+             }
+             set
+             {
+                 status = value;
+             }
+         }
+
          public DateTime ExWarrantyDate
          {
              get
@@ -98,6 +141,12 @@ namespace ShoppingCard.Object
                     obj.OrderQuanity = Convert.ToInt32(row[ColumnName.ORDERITEM_ORDERQUANTITY].ToString());
                  if (row[ColumnName.ORDERITEM_EXWARRANTYDATE] != null && row[ColumnName.ORDERITEM_EXWARRANTYDATE].ToString() != "")
                     DateHelper.Mapping(row[ColumnName.ORDERITEM_EXWARRANTYDATE].ToString());
+                 if (row[ColumnName.ORDERITEM_STATUS] != null && row[ColumnName.ORDERITEM_STATUS].ToString() != "")
+                    obj.Status = Convert.ToChar(row[ColumnName.ORDERITEM_STATUS]);
+                if (row[ColumnName.ORDERITEM_PRODUCTREPLACE] != null && row[ColumnName.ORDERITEM_PRODUCTREPLACE].ToString() != "")
+                    obj.ProductReplace.ProducId = row[ColumnName.ORDERITEM_PRODUCTREPLACE].ToString();
+                if (row[ColumnName.ORDERITEM_QUANTITYREPLACE] != null && row[ColumnName.ORDERITEM_QUANTITYREPLACE].ToString() != "")
+                    obj.QuantityReplace= Convert.ToInt32(row[ColumnName.ORDERITEM_QUANTITYREPLACE].ToString());
                  Product.Mapping(obj.ProductInfor, row);
 
              }

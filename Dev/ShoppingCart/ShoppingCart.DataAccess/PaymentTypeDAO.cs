@@ -20,7 +20,10 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
+        /// <summary>
+        /// Get all
+        /// </summary>
+        /// <returns>List</returns>
         public List<PaymentType> GetAll()
         {
             List<PaymentType> lstpaytype= new List<PaymentType>();

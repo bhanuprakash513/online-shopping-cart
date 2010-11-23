@@ -22,6 +22,10 @@ namespace ShoppingCart.DataAccess
         }
 
 
+        /// <summary>
+        /// Get All CardType
+        /// </summary>
+        /// <returns>List</returns>
         public List<CardType> GetAll()
         {
             List<CardType> lstcardtype = new List<CardType>();

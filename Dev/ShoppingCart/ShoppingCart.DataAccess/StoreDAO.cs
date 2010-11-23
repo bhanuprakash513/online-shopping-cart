@@ -80,5 +80,13 @@ namespace ShoppingCart.DataAccess
             }
         }
 
+        public static String SP_PRODUCT_GENERATEPRODUCTID
+        {
+            get
+            {
+                return "[SP_Product_GenerateProductId]";   
+            }
+        }
+
     }
 }

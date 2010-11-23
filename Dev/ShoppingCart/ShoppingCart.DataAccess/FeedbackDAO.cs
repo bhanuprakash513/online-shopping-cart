@@ -174,6 +174,12 @@ namespace ShoppingCart.DataAccess
             return feed;
         }
 
+
+        /// <summary>
+        /// Get Feedback by userid
+        /// </summary>
+        /// <param name="userid">int</param>
+        /// <returns>List</returns>
         public List<Feedback> GetFeedbackByUserId(int userid)
         {
             List<Feedback> lstfeed = new List<Feedback>();

@@ -199,6 +199,13 @@ namespace ShoppingCart.DataAccess
             return lstorder;
         }
 
+        /// <summary>
+        /// Update status deliveryid by orderid
+        /// </summary>
+        /// <param name="statusdeliveryid">int</param>
+        /// <param name="orderid">int</param>
+        /// <param name="shippingdate">DateTime</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdateStatusDeliveryIdByOrderId(int statusdeliveryid,int orderid,DateTime shippingdate)
         {
             this.paramCollection = new SqlParameter[3];
@@ -209,6 +216,12 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteStore(StoreDAO.SP_ORDER_UPDATESTATUSDELIVERY_BY_ORDERID, paramCollection);
         }
 
+        /// <summary>
+        /// Update status paid by orderid
+        /// </summary>
+        /// <param name="statuspaidid">int</param>
+        /// <param name="orderid">int</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdateStatusPaidIdByOrderId(int statuspaidid,int orderid)
         {
             this.paramCollection = new SqlParameter[2];
@@ -218,6 +231,13 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(QUERY.UPDATE_STATUSPAIDID_BY_ORDERID, paramCollection);
         }
 
+
+        /// <summary>
+        /// Update DeliveryId by orderid
+        /// </summary>
+        /// <param name="deliveryid">char</param>
+        /// <param name="orderid">int</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdateDeliveryIdByOrderId(char deliveryid,int orderid)
         {
             this.paramCollection = new SqlParameter[2];
@@ -227,6 +247,12 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(QUERY.UPDATE_DELIVERYID_BY_ORDERID, paramCollection);
         }
 
+        /// <summary>
+        /// Update useridship by orderid
+        /// </summary>
+        /// <param name="useridship">int</param>
+        /// <param name="orderid">int</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdateUserIdShipByOrderId(int useridship, int orderid)
         {
             this.paramCollection = new SqlParameter[2];
@@ -236,6 +262,13 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(QUERY.UPDATE_USERIDSHIP_BY_ORDERID, paramCollection);
         }
 
+        /// <summary>
+        /// Get Order by date and deliveryid
+        /// </summary>
+        /// <param name="deliveryid">char</param>
+        /// <param name="startdate">DateTime</param>
+        /// <param name="enddate">DateTime</param>
+        /// <returns></returns>
         public List<Order> GetOrderByDateAndDeliveryId(char deliveryid, DateTime startdate, DateTime enddate)
         {
             List<Order> lstorder = new List<Order>();
@@ -270,6 +303,11 @@ namespace ShoppingCart.DataAccess
             return lstorder;        
         }
 
+        /// <summary>
+        /// Add a order
+        /// </summary>
+        /// <param name="order">Order</param>
+        /// <returns>Boolean</returns>
         public Boolean AddOrder(Order order)
         {
             this.paramCollection = new SqlParameter[13];
@@ -291,6 +329,11 @@ namespace ShoppingCart.DataAccess
           
         }
 
+        /// <summary>
+        /// Update Order By OrderId
+        /// </summary>
+        /// <param name="order">Order</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdateOrderByOrderId(Order order)
         {
             this.paramCollection = new SqlParameter[13];
@@ -310,6 +353,11 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteStore(StoreDAO.SP_ORDER_UPDATEORDER_BY_ORDERID, paramCollection);
         }
 
+        /// <summary>
+        /// Delete Order By OrderId
+        /// </summary>
+        /// <param name="orderid">int</param>
+        /// <returns>Boolean</returns>
         public Boolean DeleteOrderByOrderId(int orderid)
         {
             this.paramCollection = new SqlParameter[1];

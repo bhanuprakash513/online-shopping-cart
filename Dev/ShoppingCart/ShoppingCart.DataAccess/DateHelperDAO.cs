@@ -20,8 +20,9 @@ namespace ShoppingCart.DataAccess
         }
 
         /// <summary>
-        /// Get Date Current
+        /// Get date current
         /// </summary>
+        /// <returns>DateTime</returns>
         public DateTime GetDateCurrent()
         {
             DataTable table=new DataTable();

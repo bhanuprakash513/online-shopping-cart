@@ -17,5 +17,14 @@ namespace ShoppingCart.Common
             }
         }
 
+        public static int PRODUCT_PRODUCTID_LENGTH = 7;
+        public static SqlDbType PRODUCT_PRODUCTID_TYPE
+        {
+            get
+            {
+                return SqlDbType.VarChar;
+            }
+        }
+
     }
 }

@@ -21,6 +21,10 @@ namespace ShoppingCart.DataAccess
         }
 
 
+        /// <summary>
+        /// Get All category
+        /// </summary>
+        /// <returns>List</returns>
         public List<Category> GetAll()
         {
             List<Category> lstcate = new List<Category>();

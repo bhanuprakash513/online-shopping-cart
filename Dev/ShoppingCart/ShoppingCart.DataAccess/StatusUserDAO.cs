@@ -20,7 +20,10 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
+        /// <summary>
+        /// Get all status user
+        /// </summary>
+        /// <returns>List</returns>
         public List<StatusUser> GetAll()
         {
             List<StatusUser> lststatususer = new List<StatusUser>();

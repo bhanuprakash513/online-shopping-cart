@@ -28,11 +28,8 @@ namespace ShoppingCart.DataAccess
 		                " AND [Order].OrderId=@OrderId " +
 		                " AND PaymentType.PayTypeId=[Order].PayTypeId ";
                 }
-            }
-
-           
+            }           
         }
-
 
         /// <summary>
         /// Get Payment Detail by Orderid
@@ -60,8 +57,11 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
-
+        /// <summary>
+        /// Get payment cheque by orderid
+        /// </summary>
+        /// <param name="OrderId">int</param>
+        /// <returns>PaymentCheque</returns>
         public PaymentCheque GetPaymentChequeByOrderId(int OrderId)
         {
             PaymentCheque obj = new PaymentCheque(); ;
@@ -83,6 +83,11 @@ namespace ShoppingCart.DataAccess
 
         }
 
+        /// <summary>
+        /// Get Payment Demand Draft By OrderId
+        /// </summary>
+        /// <param name="OrderId">int</param>
+        /// <returns>PaymentDD</returns>
         public PaymentDD GetPaymentDemandDraftByOrderId(int OrderId)
         {
             PaymentDD obj = new PaymentDD(); ;
@@ -104,6 +109,11 @@ namespace ShoppingCart.DataAccess
 
         }
 
+        /// <summary>
+        /// Add payment detail
+        /// </summary>
+        /// <param name="payment">PaymentCC</param>
+        /// <returns>Boolean</returns>
         public Boolean AddPaymentDetail(PaymentCC payment)
         {
             this.paramCollection = new SqlParameter[16];
@@ -129,6 +139,11 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
         }
 
+        /// <summary>
+        /// Add payment detail
+        /// </summary>
+        /// <param name="payment">PaymentDD</param>
+        /// <returns>Boolean</returns>
         public Boolean AddPaymentDetail(PaymentDD payment)
         {
             this.paramCollection = new SqlParameter[16];
@@ -153,6 +168,11 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
         }
 
+        /// <summary>
+        /// Add payment detail
+        /// </summary>
+        /// <param name="payment">PaymentCheque</param>
+        /// <returns>Boolean</returns>
         public Boolean AddPaymentDetail(PaymentCheque payment)
         {
 
@@ -179,6 +199,11 @@ namespace ShoppingCart.DataAccess
         
         }
 
+        /// <summary>
+        /// Update payment detail by payid
+        /// </summary>
+        /// <param name="payment">PaymentCC</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdatePaymentDetailByPayId(PaymentCC payment)
         {
             this.paramCollection = new SqlParameter[17];
@@ -203,6 +228,11 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_UPDATEPAYMENTDETAIL_BY_PAYDETAILID, paramCollection);
         }
 
+        /// <summary>
+        /// Update payment detail by payid
+        /// </summary>
+        /// <param name="payment">PaymentDD</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdatePaymentDetailByPayId(PaymentDD payment)
         {
             this.paramCollection = new SqlParameter[17];
@@ -228,6 +258,11 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_UPDATEPAYMENTDETAIL_BY_PAYDETAILID, paramCollection);
         }
 
+        /// <summary>
+        /// Update payment detail by payid
+        /// </summary>
+        /// <param name="payment">PaymentCheque</param>
+        /// <returns>Boolean</returns>
         public Boolean UpdatePaymentDetailByPayId(PaymentCheque payment)
         {
             this.paramCollection = new SqlParameter[17];

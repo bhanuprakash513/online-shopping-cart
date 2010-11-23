@@ -20,7 +20,10 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
+        /// <summary>
+        /// Get all delivery type
+        /// </summary>
+        /// <returns>List</returns>
         public List<DeliveryType> GetAll()
         {
             List<DeliveryType> lstdeliverytype = new List<DeliveryType>();
