@@ -34,7 +34,7 @@ BEGIN
 
 		SET @Str=CAST (CAST(@Str AS int) As Varchar)
 		SET @Num=CAST(@Str AS int)+1
-		SET @LengthStr=Len(@Str)
+		SET @LengthStr=Len(CAST(@Num AS VarChar))
 		SET @Str=CAST(@Num AS int)
 		IF @Num>@MaxId
 		BEGIN
