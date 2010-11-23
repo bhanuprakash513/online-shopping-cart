@@ -5,6 +5,7 @@ using ShoppingCart.Common;
 using ShoppingCard.Object;
 using ShoppingCart.Common.DatabaseTableAdapters;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace ShoppingCart.DataAccess
 {
@@ -37,7 +38,7 @@ namespace ShoppingCart.DataAccess
         {
             Database.UserStatusRoleDataTable table = this.GetAllUser();
             User userobject = new User();
-            Role roleobject = new Role();
+           
             foreach (Database.UserStatusRoleRow thisrow in table.Rows)
             {
                 if (thisrow.UserId == id)
@@ -120,6 +121,60 @@ namespace ShoppingCart.DataAccess
             this.Fill(sql, table);
             return table;
         }
-        
+
+
+        public LoginResult Login(string username, string pass)
+        {
+            Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
+            string sql = "SELECT * FROM UserStatusRole WHERE LOWER(Username)= " + username.ToLower() + " AND LOWER(Password)= " + pass.ToLower();
+            this.Fill(sql, table);
+            if (table.Rows.Count > 0)
+            {
+                return LoginResult.Failed;
+            }
+            else
+            {
+                return LoginResult.Succeed;
+            }
+        }
+        public LoginResult CheckStatus(string username, string pass)
+        {
+            Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
+            string sql = "SELECT * FROM UserStatusRole WHERE LOWER(Username)= " + username.ToLower() + " AND LOWER(Password)= " + pass.ToLower() + " AND StatusId =1";
+            this.Fill(sql, table);
+            if (table.Rows.Count > 0)
+            {
+                return LoginResult.Failed;
+            }
+            else
+            {
+                return LoginResult.Succeed;
+            }
+        }
+        public Result CheckUsernameExist(string username)
+        {
+            Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
+            string sql = "SELECT * FROM UserStatusRole WHERE LOWER(Username)= " + username.ToLower();
+            this.Fill(sql, table);
+            if (table.Rows.Count > 0)
+            {
+                return Result.Failed;
+            }
+            else
+            {
+                return Result.Succeed;
+            }
+        }
+        public Result IsValidEmail(string inputEmail)
+        {
+            string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                  @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                  @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+                return Result.Succeed;
+            else
+                return Result.Failed;
+        }
     }
 }
