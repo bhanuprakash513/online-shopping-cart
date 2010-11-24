@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="ShoppingCart.master.cs" Inherits="ShoppingCart" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="../Style/ShoppingCart_CSS.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div id="wrapper">
+	<div id="header">
+		<h1><a href="../Pages/Default.aspx">Online Shopping Website</a></h1>
+		<h2><a href="../Pages/Default.aspx">by MoWSS</a></h2>
+		<hr />
+	</div>
+	<div id="content">
+		<div id="blog">
+			<div id="post-1" class="post">
+				<h2 class="title"><a href="#">Welcome to Online Shopping Website!</a></h2>
+				<div class="entry"><asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+					<hr />
+				</div>
+			</div>
+			<!-- end #post-1 -->
+		</div>
+		<!-- end #blog -->
+		<div id="sidebar">
+			<ul>
+				<li id="search">
+					<h2>Search</h2>
+					<form id="form1" method="get" action="#">
+						<div>
+							<input id="inputtext1" type="text" name="inputtext1" value="" />
+							<input id="inputsubmit1" type="submit" name="inputsubmit1" value="Search" />
+						</div>
+					</form>
+				</li>
+				<!-- end #search -->
+				<li id="Function">
+					<h2>Main Function</h2>
+					<ul>
+					    <li><a href="../Pages/Default.aspx">Home</a></li>
+						<li><a href="../Pages/Login.aspx">Login</a></li>
+						<li><a href="../Pages/Register.aspx">Register</a></li>
+						<li><a href="../Pages/AboutUs.aspx">About Us </a></li>
+					</ul>
+				</li>
+				<!-- end #meta -->
+				<li id="Product Categories">
+					<h2>Product Categories</h2>
+					<ul>
+						<li><a href="#">Doll</a></li>
+						<li><a href="#">Bag</a></li>
+						<li><a href="#">Shoes</a></li>
+						<li><a href="#">Electronics</a></li>
+						<li><a href="#">Fashion</a></li>
+					</ul>
+				</li>
+				<!-- end #categories -->
+				<li id="FAQ">
+					<h2>FAQ</h2>
+					<ul>
+						<li><a href="#">FAQ 1</a></li>
+						<li><a href="#">FAQ 2</a></li>
+						<li><a href="#">FAQ 3</a></li>
+						<li><a href="#">FAQ 4</a></li>
+						<li><a href="#">FAQ 5</a></li>
+					</ul>
+				</li>
+				<!-- end #blogroll -->
+			</ul>
+		</div>
+		<!-- end #sidebar -->
+		<div style="clear: both; height: 1px;"></div>
+	</div>
+	<!-- end #content -->
+	<div id="footer">
+		<center><p>Copyright &copy; 2010 MoWSS. Designed by <a href="http://www.facebook.com/profile.php?id=1805100929">Mr. Sea ^^</a>.</p></center>
+	</div>
+</div>
+<!-- end #wrapper -->
+</body>
+</html>
