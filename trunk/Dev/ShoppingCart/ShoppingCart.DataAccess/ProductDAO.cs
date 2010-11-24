@@ -12,15 +12,13 @@ namespace ShoppingCart.DataAccess
     public class ProductDAO : ParentDAO
     {
         ProductCategoryTableAdapter procatadapter;
+
         public ProductDAO()
         {
             procatadapter= new ProductCategoryTableAdapter();
         }
 
-        /// <summary>
-        /// Get all product
-        /// </summary>
-        /// <returns>Database.ProductCategoryDataTable</returns>
+
         public Database.ProductCategoryDataTable GetAllProduct()
         {
             Database.ProductCategoryDataTable table = new Database.ProductCategoryDataTable();
@@ -28,34 +26,18 @@ namespace ShoppingCart.DataAccess
             return table;
         }
 
-        public Product GetProductById(String id)
+        public Product GetProductById(string id)
         {
-            Database.ProductCategoryDataTable table = this.GetAllProduct();
             Product productobject = new Product();
-            Category categoryobject = new Category();
-            foreach (Database.ProductCategoryRow thisrow in table.Rows)
-            {
-                if (thisrow.ProductId == id)
-                {
-                    productobject.ProducId = thisrow.ProductId;
-                    productobject.ProductName = thisrow.ProductName;
-                    productobject.Price = Convert.ToString(thisrow.Price);
-                    productobject.Description = thisrow.Description;
-                    productobject.Image = thisrow.Image;
-                    productobject.Quantity = thisrow.Quantity;
-                    productobject.WarrantyDay = thisrow.WarantyDay;
-                    productobject.ProductType.CatName = thisrow.CatName;
-                }
-
-            }
+            Database.ProductCategoryDataTable table = new Database.ProductCategoryDataTable();
+            string sql = "SELECT * FROM Product WHERE ProductId=@ProductId";
+            SqlParameter[] paras = new SqlParameter[1];
+            paras[0] = new SqlParameter("@ProductId", id);
+            this.Fill(sql, paras, table);
+            Product.Mapping(productobject, table.Rows[0]);
             return productobject;
         }
 
-        /// <summary>
-        /// Add product
-        /// </summary>
-        /// <param name="productobject">Product</param>
-        /// <returns>Boolean</returns>
         public Boolean AddProduct(Product productobject)
         {
             string sql = "INSERT INTO Product(ProductId,CatId,ProductName,Price,Description,WarantyDay,Image,Quantity)" +
@@ -74,16 +56,10 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(sql, paras);
         }
 
-
-        /// <summary>
-        /// Edit product
-        /// </summary>
-        /// <param name="productobject">Product</param>
-        /// <returns>Boolean</returns>
         public Boolean EditProduct(Product productobject)
         {
             string sql = "UPDATE Product " +
-                    "SET CatId=@CatId,ProductName=@ProductName,Price=@Price,Description=@Description,WarantyDay=@WarantyDay,Image=@Image,Quantity=@Quantity" +
+                    "SET CatId=@CatId,ProductName=@ProductName,Price=@Price,Description=@Description,WarantyDay=@WarantyDay,Image=@Image,Quantity=@Quantity " +
                     "WHERE ProductId=@ProductId";
             SqlParameter[] paras = new SqlParameter[8];
             paras[0] = new SqlParameter("@ProductId", productobject.ProducId);
@@ -99,12 +75,7 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(sql, paras);
         }
 
-        /// <summary>
-        /// Delete product
-        /// </summary>
-        /// <param name="productid">int</param>
-        /// <returns>Boolean</returns>
-        public Boolean DeleteProduct(int productid)
+        public Boolean DeleteProduct(string productid)
         {
             string sql = "DELETE Product WHERE ProductId = @ProductId";
             SqlParameter[] paras = new SqlParameter[1];
@@ -112,12 +83,7 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(sql, paras);
         }
 
-        /// <summary>
-        /// Get product by product name
-        /// </summary>
-        /// <param name="productname">Database.ProductCategoryDataTable</param>
-        /// <returns>String</returns>
-        public Database.ProductCategoryDataTable GetProductByProductName(String productname)
+        public Database.ProductCategoryDataTable GetProductByProductName(string productname)
         {
             Database.ProductCategoryDataTable table = new Database.ProductCategoryDataTable();
             string sql = "SELECT * FROM ProductCategory WHERE ProductName like '%" + productname + "%'";
@@ -125,7 +91,7 @@ namespace ShoppingCart.DataAccess
             return table;
         }
 
-        public Database.ProductCategoryDataTable GetProductByCategory(int category)
+        public Database.ProductCategoryDataTable GetProductByCategory(string category)
         {
             Database.ProductCategoryDataTable table = new Database.ProductCategoryDataTable();
             string sql = "SELECT * FROM ProductCategory WHERE CatId = " + category;
