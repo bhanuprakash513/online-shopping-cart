@@ -17,6 +17,10 @@ namespace ShoppingCart.DataAccess
             procatadapter= new ProductCategoryTableAdapter();
         }
 
+        /// <summary>
+        /// Get all product
+        /// </summary>
+        /// <returns>Database.ProductCategoryDataTable</returns>
         public Database.ProductCategoryDataTable GetAllProduct()
         {
             Database.ProductCategoryDataTable table = new Database.ProductCategoryDataTable();
@@ -47,6 +51,11 @@ namespace ShoppingCart.DataAccess
             return productobject;
         }
 
+        /// <summary>
+        /// Add product
+        /// </summary>
+        /// <param name="productobject">Product</param>
+        /// <returns>Boolean</returns>
         public Boolean AddProduct(Product productobject)
         {
             string sql = "INSERT INTO Product(ProductId,CatId,ProductName,Price,Description,WarantyDay,Image,Quantity)" +
@@ -65,6 +74,12 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(sql, paras);
         }
 
+
+        /// <summary>
+        /// Edit product
+        /// </summary>
+        /// <param name="productobject">Product</param>
+        /// <returns>Boolean</returns>
         public Boolean EditProduct(Product productobject)
         {
             string sql = "UPDATE Product " +
@@ -84,6 +99,11 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(sql, paras);
         }
 
+        /// <summary>
+        /// Delete product
+        /// </summary>
+        /// <param name="productid">int</param>
+        /// <returns>Boolean</returns>
         public Boolean DeleteProduct(int productid)
         {
             string sql = "DELETE Product WHERE ProductId = @ProductId";
@@ -92,7 +112,12 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(sql, paras);
         }
 
-        public Database.ProductCategoryDataTable GetProductByProductName(string productname)
+        /// <summary>
+        /// Get product by product name
+        /// </summary>
+        /// <param name="productname">Database.ProductCategoryDataTable</param>
+        /// <returns>String</returns>
+        public Database.ProductCategoryDataTable GetProductByProductName(String productname)
         {
             Database.ProductCategoryDataTable table = new Database.ProductCategoryDataTable();
             string sql = "SELECT * FROM ProductCategory WHERE ProductName like '%" + productname + "%'";
@@ -128,5 +153,25 @@ namespace ShoppingCart.DataAccess
             }
             return "";
         }
+
+        /// <summary>
+        /// Get total cost by productid and deliveryid
+        /// </summary>
+        /// <param name="productid">String</param>
+        /// <param name="deliveryid">Char</param>
+        /// <returns>String</returns>
+        public String GetTotalCost(String productid,int quantity)
+        {
+            String sql = "SELECT [Product].Price*@Quantity As TotalMoney "+
+                         " FROM Product,Category "+
+                         " WHERE Product.CatId=Category.CatId AND Product.ProductId=@ProductId ";
+            paramCollection=new SqlParameter[2];
+            paramCollection[0] = new SqlParameter("Quantity",quantity);
+            paramCollection[1] = new SqlParameter("ProductId", productid);
+            DataTable table=new DataTable();
+            this.Fill(sql, paramCollection, table);
+            return table.Rows[0][ColumnName.TOTAL_MONEY].ToString();
+        }
+
     }
 }

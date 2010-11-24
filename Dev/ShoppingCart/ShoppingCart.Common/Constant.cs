@@ -33,7 +33,9 @@ namespace ShoppingCart.Common
         public static char STATUS_ORDERITEM_NEW = 'A';
         public static char STATUS_ORDERITEM_DELETE = 'D';
         public static char STATUS_ORDERITEM_REPLACE = 'R';
-        
+
+        public static int STATUS_ACTIVE = 1;
+        public static int STATUS_INACTIVE = 2;
     }
 }
 

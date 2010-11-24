@@ -143,6 +143,7 @@ namespace ShoppingCart.Common
         //*******************************DATE
         public static String DATE_DATE = "Date";
         
-
+        //********************************TOTAL
+        public static String TOTAL_MONEY = "TotalMoney";
     }
 }

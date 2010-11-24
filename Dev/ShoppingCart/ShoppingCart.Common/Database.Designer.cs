@@ -5576,6 +5576,10 @@ namespace ShoppingCart.Common {
             
             private System.Data.DataColumn columnRoleName;
             
+            private System.Data.DataColumn columnRoleId;
+            
+            private System.Data.DataColumn columnStatusId;
+            
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public UserStatusRoleDataTable() {
                 this.TableName = "UserStatusRole";
@@ -5677,6 +5681,20 @@ namespace ShoppingCart.Common {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn RoleIdColumn {
+                get {
+                    return this.columnRoleId;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.Data.DataColumn StatusIdColumn {
+                get {
+                    return this.columnStatusId;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5705,7 +5723,7 @@ namespace ShoppingCart.Common {
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public UserStatusRoleRow AddUserStatusRoleRow(int UserId, string Username, string Password, string Fullname, string Gender, string Address, string Email, string PhoneNumber, string StatusUserName, string RoleName) {
+            public UserStatusRoleRow AddUserStatusRoleRow(int UserId, string Username, string Password, string Fullname, string Gender, string Address, string Email, string PhoneNumber, string StatusUserName, string RoleName, int RoleId, int StatusId) {
                 UserStatusRoleRow rowUserStatusRoleRow = ((UserStatusRoleRow)(this.NewRow()));
                 rowUserStatusRoleRow.ItemArray = new object[] {
                         UserId,
@@ -5717,7 +5735,9 @@ namespace ShoppingCart.Common {
                         Email,
                         PhoneNumber,
                         StatusUserName,
-                        RoleName};
+                        RoleName,
+                        RoleId,
+                        StatusId};
                 this.Rows.Add(rowUserStatusRoleRow);
                 return rowUserStatusRoleRow;
             }
@@ -5757,6 +5777,8 @@ namespace ShoppingCart.Common {
                 this.columnPhoneNumber = base.Columns["PhoneNumber"];
                 this.columnStatusUserName = base.Columns["StatusUserName"];
                 this.columnRoleName = base.Columns["RoleName"];
+                this.columnRoleId = base.Columns["RoleId"];
+                this.columnStatusId = base.Columns["StatusId"];
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5781,6 +5803,10 @@ namespace ShoppingCart.Common {
                 base.Columns.Add(this.columnStatusUserName);
                 this.columnRoleName = new System.Data.DataColumn("RoleName", typeof(string), null, System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRoleName);
+                this.columnRoleId = new System.Data.DataColumn("RoleId", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRoleId);
+                this.columnStatusId = new System.Data.DataColumn("StatusId", typeof(int), null, System.Data.MappingType.Element);
+                base.Columns.Add(this.columnStatusId);
                 this.Constraints.Add(new System.Data.UniqueConstraint("Constraint1", new System.Data.DataColumn[] {
                                 this.columnUserId}, true));
                 this.columnUserId.AllowDBNull = false;
@@ -5801,6 +5827,8 @@ namespace ShoppingCart.Common {
                 this.columnStatusUserName.MaxLength = 50;
                 this.columnRoleName.AllowDBNull = false;
                 this.columnRoleName.MaxLength = 50;
+                this.columnRoleId.AllowDBNull = false;
+                this.columnStatusId.AllowDBNull = false;
             }
             
             [System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7972,6 +8000,26 @@ namespace ShoppingCart.Common {
                 }
                 set {
                     this[this.tableUserStatusRole.RoleNameColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int RoleId {
+                get {
+                    return ((int)(this[this.tableUserStatusRole.RoleIdColumn]));
+                }
+                set {
+                    this[this.tableUserStatusRole.RoleIdColumn] = value;
+                }
+            }
+            
+            [System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int StatusId {
+                get {
+                    return ((int)(this[this.tableUserStatusRole.StatusIdColumn]));
+                }
+                set {
+                    this[this.tableUserStatusRole.StatusIdColumn] = value;
                 }
             }
             
@@ -14610,6 +14658,8 @@ SELECT StatusDeliveryId, StatusDeliveryName FROM StatusDelivery WHERE (StatusDel
             tableMapping.ColumnMappings.Add("PhoneNumber", "PhoneNumber");
             tableMapping.ColumnMappings.Add("StatusUserName", "StatusUserName");
             tableMapping.ColumnMappings.Add("RoleName", "RoleName");
+            tableMapping.ColumnMappings.Add("RoleId", "RoleId");
+            tableMapping.ColumnMappings.Add("StatusId", "StatusId");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -14625,7 +14675,7 @@ SELECT StatusDeliveryId, StatusDeliveryName FROM StatusDelivery WHERE (StatusDel
             this._commandCollection[0] = new System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT UserId, Username, Password, Fullname, Gender, Address, Email, PhoneNumber," +
-                " StatusUserName, RoleName FROM dbo.UserStatusRole";
+                " StatusUserName, RoleName, RoleId, StatusId FROM dbo.UserStatusRole";
             this._commandCollection[0].CommandType = System.Data.CommandType.Text;
         }
         

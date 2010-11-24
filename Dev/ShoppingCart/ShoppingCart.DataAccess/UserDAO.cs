@@ -19,12 +19,21 @@ namespace ShoppingCart.DataAccess
            useradapter = new UserStatusRoleTableAdapter();
 
         }
+        /// <summary>
+        /// Get all user
+        /// </summary>
+        /// <returns>Database.UserStatusRoleDataTable</returns>
         public Database.UserStatusRoleDataTable GetAllUser()
         {
             Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
             useradapter.Fill(table);
             return table;
         }
+
+        /// <summary>
+        /// Get all employee
+        /// </summary>
+        /// <returns>Database.UserStatusRoleDataTable</returns>
         public Database.UserStatusRoleDataTable GetAllEmployee()
         {
             Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
@@ -59,9 +68,15 @@ namespace ShoppingCart.DataAccess
             return userobject;
         }
 
+
+        /// <summary>
+        /// Add user
+        /// </summary>
+        /// <param name="userobject">User</param>
+        /// <returns>Boolean</returns>
         public Boolean AddUser(User userobject)
         {
-            string sql = "INSERT INTO [User](Username,Password,Fullname,Address,Email,Gender,RoleId,PhoneNumber,StatusId)" +
+            String sql = "INSERT INTO [User](Username,Password,Fullname,Address,Email,Gender,RoleId,PhoneNumber,StatusId)" +
                     " VALUES (@username, @password, @fullname, @address, @email, @gender, @roleid, @phonenumber, @statusid)";
             SqlParameter[] paras = new SqlParameter[9];
             paras[0] = new SqlParameter("@username", userobject.UserName);
@@ -97,6 +112,11 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(sql, paras);
         }
 
+        /// <summary>
+        /// Delete user
+        /// </summary>
+        /// <param name="userid">int</param>
+        /// <returns>Boolean</returns>
         public Boolean DeleteEmployee(int userid)
         {
             string sql = "DELETE [User] WHERE UserId = @Userid";
@@ -106,12 +126,27 @@ namespace ShoppingCart.DataAccess
         }
 
 
-        public Database.UserStatusRoleDataTable GetUserByUsername(string username)
+        public Database.UserStatusRoleDataTable GetEmployeeByUsername(string username)
         {
             Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
-            string sql = "SELECT * FROM UserStatusRole WHERE Username like '%" + username + "%'  AND RoleID  = " + Constant.ROLEID_EMPLOYEE.ToString();
-            this.Fill(sql, table);
+            string sql = "SELECT * FROM UserStatusRole WHERE Username like @Username  AND RoleID  = " + Constant.ROLEID_EMPLOYEE.ToString();
+            SqlParameter[] paras = new SqlParameter[1];
+            paras[0] = new SqlParameter("@Username", "%" + username + "%");
+            this.Fill(sql, paras, table);
             return table;
+        }
+
+        public User GetUserByUsername(string username)
+        {
+            Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
+            string sql = "SELECT * FROM UserStatusRole WHERE Username = @Username";
+            SqlParameter[] paras = new SqlParameter[1];
+            paras[0] = new SqlParameter("@Username", username);
+            this.Fill(sql, paras, table);
+            User user = new User();
+            if(table.Rows.Count>0)
+                User.Mapping(user, table.Rows[0]);
+            return user;
         }
 
         public Database.UserStatusRoleDataTable GetUserByFullname(string fullname)
@@ -122,21 +157,24 @@ namespace ShoppingCart.DataAccess
             return table;
         }
 
-
         public LoginResult Login(string username, string pass)
         {
             Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
-            string sql = "SELECT * FROM UserStatusRole WHERE LOWER(Username)= " + username.ToLower() + " AND LOWER(Password)= " + pass.ToLower();
-            this.Fill(sql, table);
+            string sql = "SELECT * FROM UserStatusRole WHERE Username= @Username AND Password = @Password";
+            SqlParameter[] paras = new SqlParameter[2];
+            paras[0] = new SqlParameter("@Username", username);
+            paras[1] = new SqlParameter("@Password", pass);
+            this.Fill(sql, paras, table);
             if (table.Rows.Count > 0)
-            {
-                return LoginResult.Failed;
-            }
-            else
             {
                 return LoginResult.Succeed;
             }
+            else
+            {
+                return LoginResult.Failed;
+            }
         }
+
         public LoginResult CheckStatus(string username, string pass)
         {
             Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
@@ -151,6 +189,7 @@ namespace ShoppingCart.DataAccess
                 return LoginResult.Succeed;
             }
         }
+        
         public Result CheckUsernameExist(string username)
         {
             Database.UserStatusRoleDataTable table = new Database.UserStatusRoleDataTable();
@@ -165,6 +204,7 @@ namespace ShoppingCart.DataAccess
                 return Result.Succeed;
             }
         }
+        
         public Result IsValidEmail(string inputEmail)
         {
             string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +

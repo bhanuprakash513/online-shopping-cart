@@ -19,7 +19,7 @@ namespace ShoppingCard.Object
            deliverycost = "0";
        }
 
-       public char DeliveryId
+       public Char DeliveryId
        {
            get
            {
