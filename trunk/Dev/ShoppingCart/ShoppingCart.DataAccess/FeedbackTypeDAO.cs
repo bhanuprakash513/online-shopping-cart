@@ -10,7 +10,7 @@ namespace ShoppingCart.DataAccess
     {
         public static class QUERY
         {
-            public static String GetAll
+            public static String GETALL
             {
                 get
                 {
@@ -28,7 +28,7 @@ namespace ShoppingCart.DataAccess
         {
             List<FeedbackType> lstfeedbacktype = new List<FeedbackType>();
             DataTable table = new DataTable();
-            this.Fill(QUERY.GetAll, table);
+            this.Fill(QUERY.GETALL, table);
             if (table.Rows.Count > 0)
                 FeedbackType.Mapping(lstfeedbacktype, table);
             return lstfeedbacktype;

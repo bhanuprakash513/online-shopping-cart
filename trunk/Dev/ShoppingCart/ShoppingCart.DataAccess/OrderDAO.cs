@@ -125,13 +125,12 @@ namespace ShoppingCart.DataAccess
             return lstorder;        
         }
 
-
         /// <summary>
         /// Get Order by orderId
         /// </summary>
         /// <param name="orderid">int</param>
         /// <returns>Order</returns>
-        public Order GetOrderByOrderId(int orderid)
+        public Order GetOrderByOrderId(Int32 orderid)
         {
             Order obj = new Order();
 
@@ -162,13 +161,12 @@ namespace ShoppingCart.DataAccess
             return obj;
         }
 
-
         /// <summary>
         /// Get  Order  by Custid
         /// </summary>
         /// <param name="orderid">int</param>
         /// <returns>List</returns>
-        public List<Order> GetAllOrderByCustId(int custid)
+        public List<Order> GetAllOrderByCustId(Int32 custid)
         {
             List<Order> lstorder = new List<Order>();
 
@@ -231,14 +229,13 @@ namespace ShoppingCart.DataAccess
             return this.ExecuteNonQuery(QUERY.UPDATE_STATUSPAIDID_BY_ORDERID, paramCollection);
         }
 
-
         /// <summary>
         /// Update DeliveryId by orderid
         /// </summary>
         /// <param name="deliveryid">char</param>
         /// <param name="orderid">int</param>
         /// <returns>Boolean</returns>
-        public Boolean UpdateDeliveryIdByOrderId(char deliveryid,int orderid)
+        public Boolean UpdateDeliveryIdByOrderId(Char deliveryid,int orderid)
         {
             this.paramCollection = new SqlParameter[2];
             this.paramCollection[0] = new SqlParameter("DeliveryId", deliveryid);
@@ -269,7 +266,7 @@ namespace ShoppingCart.DataAccess
         /// <param name="startdate">DateTime</param>
         /// <param name="enddate">DateTime</param>
         /// <returns></returns>
-        public List<Order> GetOrderByDateAndDeliveryId(char deliveryid, DateTime startdate, DateTime enddate)
+        public List<Order> GetOrderByDateAndDeliveryId(Char deliveryid, DateTime startdate, DateTime enddate)
         {
             List<Order> lstorder = new List<Order>();
 
@@ -364,5 +361,7 @@ namespace ShoppingCart.DataAccess
             this.paramCollection[13] = new SqlParameter("OrderId", orderid);
             return this.ExecuteStore(StoreDAO.SP_ORDER_DELETEORDER_BY_ORDERID, paramCollection);
         }
+
+  
     }
 }

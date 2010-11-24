@@ -10,10 +10,6 @@ namespace ShoppingCart.Common
         Failed
     }
 
-    public enum Role
-    {
-        Boss
-    }
 
     public enum Result
     {

@@ -122,7 +122,7 @@ namespace ShoppingCart.DataAccess
         /// </summary>
         /// <param name="feed">Feedback</param>
         /// <returns>Boolean</returns>
-        public Boolean Add(Feedback feed)
+        public Boolean AddFeedbackFAQ(Feedback feed)
         {
             this.paramCollection = new SqlParameter[4];
             this.paramCollection[0] = new SqlParameter("Question", feed.Question.Trim());
@@ -140,7 +140,7 @@ namespace ShoppingCart.DataAccess
         public Boolean AddFeedback(Feedback feed)
         {
             feed.FeedType.FeedTypeId=Constant.FEEDBACK_TYPE_ID;
-            return this.Add(feed);
+            return this.AddFeedbackFAQ(feed);
         }
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace ShoppingCart.DataAccess
         public Boolean AddFAQ(Feedback feed)
         {
             feed.FeedType.FeedTypeId = Constant.FAQ_TYPE_ID;
-            return this.Add(feed);
+            return this.AddFeedbackFAQ(feed);
             
         }
 
@@ -160,7 +160,7 @@ namespace ShoppingCart.DataAccess
         /// </summary>
         /// <param name="feedid">int</param>
         /// <returns>Feedback</returns>
-        public Feedback GetFeedbackByFeedId(int feedid)
+        public Feedback GetFeedbackFAQByFeedId(int feedid)
         {
             Feedback feed= new Feedback();
             this.paramCollection = new SqlParameter[1];
@@ -200,7 +200,7 @@ namespace ShoppingCart.DataAccess
         /// </summary>
         /// <param name="feed">Feedback</param>
         /// <returns>Boolean</returns>
-        public Boolean UpdateFeedbackById(Feedback feed)
+        public Boolean UpdateFeedbackFAQByFeedId(Feedback feed)
         {
             this.paramCollection = new SqlParameter[3];
             this.paramCollection[0] = new SqlParameter("Question", feed.Question.Trim());
@@ -215,9 +215,10 @@ namespace ShoppingCart.DataAccess
         /// </summary>
         /// <param name="id">int</param>
         /// <returns>Boolean</returns>
-        public Boolean DeleteFeedbackById(int id)
+        public Boolean DeleteFeedbackFAQByFeedId(int feedid)
         {
             this.paramCollection = new SqlParameter[1];
+            this.paramCollection[0] = new SqlParameter("FeedId", feedid);
             return this.ExecuteNonQuery(QUERY.DELETE_FEEDBACK, paramCollection);
         }
 

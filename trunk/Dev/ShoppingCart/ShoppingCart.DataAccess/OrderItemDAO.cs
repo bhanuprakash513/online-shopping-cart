@@ -163,5 +163,7 @@ namespace ShoppingCart.DataAccess
 
             return this.ExecuteNonQuery(QUERY.UPDATE_PRODUCT_REPLACE_BY_ORDERITEMID, paramCollection);
         }
+
+      
     }
 }

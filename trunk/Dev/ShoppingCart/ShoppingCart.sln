@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.Common", "Shop
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\ShoppingCart.UI\", "C:\Documents and Settings\Admin\My Documents\Visual Studio 2005\WebSites\ShoppingCart.UI\", "{821A6061-2892-45CD-B65D-AAC1DF36B6AB}"
 	ProjectSection(WebsiteProperties) = preProject
-		ProjectReferences = "{68C0F2EA-8E11-4D08-87CD-6D89A2D3CBC6}|ShoppingCart.DataAccess.dll;"
+		ProjectReferences = "{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}|ShoppingCart.Business.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/ShoppingCart.UI"
 		Debug.AspNetCompiler.PhysicalPath = "C:\Documents and Settings\Admin\My Documents\Visual Studio 2005\WebSites\ShoppingCart.UI\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\ShoppingCart.UI\"
@@ -26,6 +26,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\ShoppingCart.UI\", "
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "1295"
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart.Business", "ShoppingCart.Business\ShoppingCart.Business.csproj", "{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +79,16 @@ Global
 		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|Any CPU.ActiveCfg = Debug|.NET
 		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
 		{821A6061-2892-45CD-B65D-AAC1DF36B6AB}.Release|Mixed Platforms.Build.0 = Debug|.NET
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Release|.NET.ActiveCfg = Release|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6924E8DB-7A90-4AD9-AD24-BC19D5C450EB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
