@@ -227,9 +227,10 @@ AS
 BEGIN
 	DECLARE @PayDetailId int
 	SELECT @PayDetailId=PayDetailId FROM [Order] WHERE OrderId=@OrderId
-	DELETE PaymentDetail WHERE PayDetailId=@PayDetailId;
 	DELETE OrderItem WHERE OrderId=@OrderId
 	DELETE [Order] WHERE OrderId=@OrderId
+	DELETE PaymentDetail WHERE PayDetailId=@PayDetailId;
+	
 END
 
 GO
@@ -493,6 +494,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_Payment
 DROP PROCEDURE [dbo].[SP_PaymentDetail_InsertPaymentDetail]
 GO
 CREATE PROC [SP_PaymentDetail_InsertPaymentDetail]
+	@PayDetailId	int output,
 	@PaymentName	nvarchar(50),
 	@CardTypeId		int,
 	@Title			nvarchar(max),
@@ -513,6 +515,10 @@ AS
 BEGIN
 	IF @CardTypeId = -1
 		SET @CardTypeId=NULL
+	DECLARE @PayMax1 int
+	DECLARE @PayMax2 int
+	
+	SELECT @PayMax1=Max(PayDetailId) FROM PaymentDetail
 	INSERT INTO PaymentDetail
 	(
 		PaymentName,
@@ -551,6 +557,12 @@ BEGIN
 		@CVV,	
 		@SecurityNumber
 	)
+	
+	SELECT @PayMax2=Max(PayDetailId) FROM PaymentDetail
+	IF @PayMax2>@PayMax1
+		SET @PayDetailId=@PayMax2
+	ELSE
+		SET @PayDetailId=-1;
 END
 
 
