@@ -14,7 +14,8 @@ AS
 BEGIN
 	DECLARE @PayDetailId int
 	SELECT @PayDetailId=PayDetailId FROM [Order] WHERE OrderId=@OrderId
-	DELETE PaymentDetail WHERE PayDetailId=@PayDetailId;
 	DELETE OrderItem WHERE OrderId=@OrderId
 	DELETE [Order] WHERE OrderId=@OrderId
+	DELETE PaymentDetail WHERE PayDetailId=@PayDetailId;
+	
 END
