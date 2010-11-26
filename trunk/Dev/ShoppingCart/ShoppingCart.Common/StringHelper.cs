@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Data;
 
 namespace ShoppingCart.Common
 {
@@ -40,7 +41,7 @@ namespace ShoppingCart.Common
         /// </summary>
         /// <param name="inputEmail">String</param>
         /// <returns>Result</returns>
-        public Result IsValidEmail(String inputEmail)
+        public static Result IsValidEmail(String inputEmail)
         {
             string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
                   @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
@@ -50,6 +51,49 @@ namespace ShoppingCart.Common
                 return Result.Succeed;
             else
                 return Result.Failed;
+        }
+
+        /// <summary>
+        /// Divide page
+        /// </summary>
+        /// <param name="i">int</param>
+        /// <param name="total">int</param>
+        /// <param name="tenfile">String</param>
+        /// <param name="color1">String</param>
+        /// <param name="color2">String</param>
+        /// <param name="nameindex">String</param>
+        /// <returns></returns>
+        public static List<String> ShowNumPage(int i,int total,String tenfile,String color1,String color2,String nameindex)
+        {
+            String str = "";
+            List<String> strlist = new List<String>();
+            int j = 1;
+            int k = i;
+            if (i > 1)
+                i = i - 1;
+            
+
+            while (i <= (total) / Constant.NUM_RECORD_DIVIDE && j <= Constant.NUM_PAGE_DIVIDE)
+            {
+                if (k == i)
+                    str = "<a href='" + tenfile + "?"+nameindex+"=" + i + "' style='color:"+color1+";background-color:"+color2+";text-decoration:none'>" + i + "</a>";
+                else
+                    str = "<a href='" + tenfile + "?"+nameindex+"=" + i + "' style='color:" + color1 + ";text-decoration:none'>" + i + "</a>";
+                strlist.Add(str);
+                i++;
+                j++;
+            }
+            if (total % Constant.NUM_RECORD_DIVIDE != 0 && total > Constant.NUM_RECORD_DIVIDE && j <= Constant.NUM_PAGE_DIVIDE)
+            {
+                if (i == k)
+                    str = "<a href='" + tenfile + "?"+nameindex+"=" + i + "' style='color:" + color1 + ";background-color:" + color2 + ";text-decoration:none'>" + i + "</a>";
+                else
+                    str = "<a href='" + tenfile + "?"+nameindex +"=" + i + "' style='color:" + color1 + ";text-decoration:none'>" + i + "</a>";
+                strlist.Add(str);
+                j++;
+            }
+
+            return strlist;
         }
     }
 }
