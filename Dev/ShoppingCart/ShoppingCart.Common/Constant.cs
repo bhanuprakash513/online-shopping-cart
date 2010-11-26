@@ -38,6 +38,10 @@ namespace ShoppingCart.Common
         public static int STATUSID_INACTIVE = 2;
 
         public static int EX_WEEK_ORDER = 7;
+
+
+        public static int NUM_RECORD_DIVIDE = 10;
+        public static int NUM_PAGE_DIVIDE = 5;
     }
 }
 

@@ -5,7 +5,7 @@ using ShoppingCart.Object;
 using System.Data;
 using System.Data.SqlClient;
 using ShoppingCart.Common;
-using ShoppingCart.Object;
+
 
 namespace ShoppingCart.DataAccess
 {
