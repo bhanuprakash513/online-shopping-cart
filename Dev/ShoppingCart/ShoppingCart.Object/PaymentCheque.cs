@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ShoppingCard.Object;
+using ShoppingCart.Object;
 using ShoppingCart.Common;
 using System.Data;
 

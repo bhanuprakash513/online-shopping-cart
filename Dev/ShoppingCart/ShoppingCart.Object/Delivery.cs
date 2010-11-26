@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 
-namespace ShoppingCard.Object
+namespace ShoppingCart.Object
 {
    public class Delivery
     {

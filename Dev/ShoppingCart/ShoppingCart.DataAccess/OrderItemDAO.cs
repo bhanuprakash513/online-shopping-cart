@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ShoppingCard.Object;
+using ShoppingCart.Object;
 using System.Data;
 using System.Data.SqlClient;
 using ShoppingCart.Common;
@@ -47,6 +47,14 @@ namespace ShoppingCart.DataAccess
                     return "UPDATE OrderItem SET ProductReplace=@ProductReplace,QuantityReplace=@QuantityReplace WHERE OrderItem.OrderItemId=@OrderItemId ";
                 }
             }
+
+            public static String GET_ORDERITEM_BY_ORDERITEMID
+            {
+                get
+                {
+                    return "SELECT * FROM OrderItem WHERE OrderItemId=@OrderItemId";
+                }
+            }
         }
 
         /// <summary>
@@ -64,6 +72,24 @@ namespace ShoppingCart.DataAccess
             if (table.Rows.Count > 0)
                 OrderItem.Mapping(lstorderitem, table);
             return lstorderitem;
+        }
+
+        /// <summary>
+        /// Get orderitem by orderitemid
+        /// </summary>
+        /// <param name="orderitemid">String</param>
+        /// <returns>OrderItem</returns>
+        public OrderItem GetOrderItemByOrderItemId(String orderitemid)
+        {
+            this.paramCollection = new SqlParameter[1];
+            OrderItem orderitem=new OrderItem();
+            this.paramCollection[0] = new SqlParameter("OrderItemId",orderitemid);
+            DataTable table = new DataTable();
+            this.Fill(QUERY.GET_ORDERITEM_BY_ORDERITEMID, this.paramCollection, table);
+            if (table.Rows.Count > 0)
+                OrderItem.Mapping(orderitem,table.Rows[0]);
+            return orderitem;
+
         }
 
         /// <summary>
@@ -163,6 +189,7 @@ namespace ShoppingCart.DataAccess
 
             return this.ExecuteNonQuery(QUERY.UPDATE_PRODUCT_REPLACE_BY_ORDERITEMID, paramCollection);
         }
+
 
       
     }

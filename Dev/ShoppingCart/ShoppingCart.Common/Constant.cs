@@ -25,17 +25,19 @@ namespace ShoppingCart.Common
 
         public static int ID_FALSE = -1;
 
-        public static int STATUSDELIVERY_NEW = 1;
-        public static int STATUSDELIVERY_UNDONE = 2;
-        public static int STATUSDELIVERY_DONE = 3;
-        public static int STATUSDELIVERY_RETURN = 4;
+        public static int STATUSDELIVERYID_NEW = 1;
+        public static int STATUSDELIVERYID_UNDONE = 2;
+        public static int STATUSDELIVERYID_DONE = 3;
+        public static int STATUSDELIVERYID_RETURN = 4;
 
         public static char STATUS_ORDERITEM_NEW = 'A';
         public static char STATUS_ORDERITEM_DELETE = 'D';
         public static char STATUS_ORDERITEM_REPLACE = 'R';
 
-        public static int STATUS_ACTIVE = 1;
-        public static int STATUS_INACTIVE = 2;
+        public static int STATUSID_ACTIVE = 1;
+        public static int STATUSID_INACTIVE = 2;
+
+        public static int EX_WEEK_ORDER = 7;
     }
 }
 
