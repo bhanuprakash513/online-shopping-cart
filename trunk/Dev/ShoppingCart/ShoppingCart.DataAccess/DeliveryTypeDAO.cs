@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ShoppingCard.Object;
+using ShoppingCart.Object;
 using System.Data;
 
 namespace ShoppingCart.DataAccess
@@ -51,7 +51,9 @@ namespace ShoppingCart.DataAccess
         {
             DeliveryType deliverytype = new DeliveryType();
             DataTable table = new DataTable();
-            this.Fill(QUERY.GET_DELIVERYTYPE_BY_DELIVERYID, table);
+            paramCollection = new System.Data.SqlClient.SqlParameter[1];
+            paramCollection[0] = new System.Data.SqlClient.SqlParameter("DeliveryId", deliveryid);
+            this.Fill(QUERY.GET_DELIVERYTYPE_BY_DELIVERYID,paramCollection,table);
             if (table.Rows.Count > 0)
                 DeliveryType.Mapping(deliverytype, table.Rows[0]);
             return deliverytype;

@@ -14,6 +14,7 @@ namespace ShoppingCart.DataAccess
         protected SqlDataAdapter adapter;
         protected String query;
         protected SqlParameter[] paramCollection;
+
         /// <summary>
         /// Connection string
         /// </summary>
@@ -35,7 +36,6 @@ namespace ShoppingCart.DataAccess
             adapter = new SqlDataAdapter();
         }
 
-
         /// <summary>
         /// Init Connect
         /// </summary>
@@ -54,7 +54,6 @@ namespace ShoppingCart.DataAccess
                 return false;
         }
 
-
         /// <summary>
         /// Close Connect
         /// </summary>
@@ -67,7 +66,6 @@ namespace ShoppingCart.DataAccess
             }
             
         }
-
 
         /// <summary>
         /// Fill Table
@@ -104,8 +102,6 @@ namespace ShoppingCart.DataAccess
             return 0;
         }
 
-
-
         /// <summary>
         /// Fill Table
         /// </summary>
@@ -139,8 +135,6 @@ namespace ShoppingCart.DataAccess
             }
             return 0;
         }
-
-      
 
         /// <summary>
         /// Execute Query
@@ -176,7 +170,6 @@ namespace ShoppingCart.DataAccess
             }
             return false;
         }
-
 
         /// <summary>
         /// Execute Query
@@ -229,8 +222,6 @@ namespace ShoppingCart.DataAccess
 
         }
 
-
-
         /// <summary>
         /// Fill table from store
         /// </summary>
@@ -266,8 +257,6 @@ namespace ShoppingCart.DataAccess
             return 0;
         }
 
-
-
         /// <summary>
         /// Fill table from store
         /// </summary>
@@ -302,8 +291,6 @@ namespace ShoppingCart.DataAccess
             return 0;
         }
 
-
-
         /// <summary>
         /// Execute from store
         /// </summary>
@@ -337,7 +324,6 @@ namespace ShoppingCart.DataAccess
             }
             return false;
         }
-
 
         /// <summary>
         /// Execute from Store

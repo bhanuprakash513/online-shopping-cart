@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using ShoppingCart.Common;
 
-namespace ShoppingCard.Object
+namespace ShoppingCart.Object
 {
    public class Admin : User
    {

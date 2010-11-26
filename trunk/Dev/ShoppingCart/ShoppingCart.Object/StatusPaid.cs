@@ -4,7 +4,7 @@ using System.Text;
 using System.Data;
 using ShoppingCart.Common;
 
-namespace ShoppingCard.Object
+namespace ShoppingCart.Object
 {
    public class StatusPaid
     {

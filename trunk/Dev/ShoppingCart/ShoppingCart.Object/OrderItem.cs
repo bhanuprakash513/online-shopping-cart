@@ -4,7 +4,7 @@ using System.Text;
 using ShoppingCart.Common;
 using System.Data;
 
-namespace ShoppingCard.Object
+namespace ShoppingCart.Object
 {
      public class OrderItem
     {

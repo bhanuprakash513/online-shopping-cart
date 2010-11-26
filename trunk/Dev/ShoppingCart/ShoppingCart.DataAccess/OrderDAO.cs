@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ShoppingCard.Object;
+using ShoppingCart.Object;
 using System.Data.SqlClient;
 using System.Data;
 using ShoppingCart.Common;
@@ -21,6 +21,7 @@ namespace ShoppingCart.DataAccess
                            " [Order].StatusDeliveryId,[Order].OrderDate,[Order].ReceiverFullname,[Order].ReceiverAddress, " +
                            " [Order].ReceiverPhone,[Order].CountryId,[Order].City,[Order].State,[Order].Zipcode,[Order].TotalCost, " +
                            " [Order].ExtraMoney,[Order].Note, "+ 
+                           " DeliveryType.DeliveryCost, "+
                            " DeliveryType.DeliveryName,StatusPaid.StatusPaidName, StatusDelivery.StatusDeliveryName, Country.CountryName,PaymentType.PayTypeName " +
                            " FROM [Order],[DeliveryType],[StatusPaid],[StatusDelivery],[Country],[PaymentType] " +
                            " WHERE DeliveryType.DeliveryId=[Order].DeliveryId " +
@@ -148,11 +149,20 @@ namespace ShoppingCart.DataAccess
                 {
                     int paytypeid = Convert.ToInt32(table.Rows[0][ColumnName.ORDER_PAYTYPEID]);
                     if (paytypeid == Constant.PAYMENTTYPE_CC)
+                    {
                         obj.PaymentCCInfor = new PaymentDetailDAO().GetPaymentCreditCardByOrderId(obj.OrderId);
+                        obj.PaymentInfor.PayType.PayTypeId = obj.PaymentCCInfor.PayType.PayTypeId;
+                    }
                     else if (paytypeid == Constant.PAYMENTTYPE_DD)
+                    {
                         obj.PaymentDDInfor = new PaymentDetailDAO().GetPaymentDemandDraftByOrderId(obj.OrderId);
+                        obj.PaymentInfor.PayType.PayTypeId = obj.PaymentDDInfor.PayType.PayTypeId;
+                    }
                     else if (paytypeid == Constant.PAYMENTTYPE_CHEQUE)
+                    {
                         obj.PaymentChequeInfor = new PaymentDetailDAO().GetPaymentChequeByOrderId(obj.OrderId);
+                        obj.PaymentInfor.PayType.PayTypeId = obj.PaymentChequeInfor.PayType.PayTypeId;
+                    }
 
                 }
                 obj.ListOrderItem = new OrderItemDAO().GetAllOrderItemByOrderID(obj.OrderId);
@@ -307,23 +317,56 @@ namespace ShoppingCart.DataAccess
         /// <returns>Boolean</returns>
         public Boolean AddOrder(Order order)
         {
-            this.paramCollection = new SqlParameter[13];
-         
-            this.paramCollection[0] = new SqlParameter("PayDetailId", order.PaymentInfor.PayId);
-            this.paramCollection[1] = new SqlParameter("DeliveryId", order.DeliveryInfo.Type.DeliveryId);
-            this.paramCollection[2] = new SqlParameter("PayTypeId", order.PaymentInfor.PayType.PayTypeId);
-            this.paramCollection[3] = new SqlParameter("CustId", order.CustInfor.UserId);
-            this.paramCollection[4] = new SqlParameter("ReceiverFullname", order.ReceiverFullname.Trim());
-            this.paramCollection[5] = new SqlParameter("ReceiverAddress", order.ReceiverAddress.Trim());
-            this.paramCollection[6] = new SqlParameter("ReceiverPhone", order.ReceiverPhone.Trim());
-            this.paramCollection[7] = new SqlParameter("CountryId", order.CountryInfor.CountryId);
-            this.paramCollection[8] = new SqlParameter("City", order.City.Trim());
-            this.paramCollection[9] = new SqlParameter("State", order.State.Trim());
-            this.paramCollection[10] = new SqlParameter("Zipcode", order.Zipcode.Trim());
-            this.paramCollection[11] = new SqlParameter("TotalCost", order.TotalCost);
-            this.paramCollection[12] = new SqlParameter("Note", order.Note.Trim());
-            return this.ExecuteStore(StoreDAO.SP_ORDER_CREATEORDER, paramCollection);
-          
+            Boolean status=false;
+            Boolean status2 = false;
+            if (order.PaymentInfor.PayType.PayTypeId == Constant.PAYMENTTYPE_VPP)
+            {
+                status2 = true;
+
+            }
+            else
+            {
+                if (order.PaymentInfor.PayType.PayTypeId == Constant.PAYMENTTYPE_CHEQUE)
+                {
+                    status = new PaymentDetailDAO().AddPaymentDetail(order.PaymentChequeInfor);
+                    order.PaymentInfor.PayId = order.PaymentChequeInfor.PayId;
+                }
+                else if (order.PaymentInfor.PayType.PayTypeId == Constant.PAYMENTTYPE_DD)
+                {
+                    status = new PaymentDetailDAO().AddPaymentDetail(order.PaymentDDInfor);
+                    order.PaymentInfor.PayId = order.PaymentDDInfor.PayId;
+                }
+                else if (order.PaymentInfor.PayType.PayTypeId == Constant.PAYMENTTYPE_CC)
+                {
+                    status = new PaymentDetailDAO().AddPaymentDetail(order.PaymentCCInfor);
+                    order.PaymentInfor.PayId = order.PaymentCCInfor.PayId;
+                }
+            }
+
+            if ((status == true && order.PaymentInfor.PayId != Constant.ID_FALSE) || status2==true)
+            {
+                this.paramCollection = new SqlParameter[13];
+                this.paramCollection[0] = new SqlParameter("PayDetailId", order.PaymentInfor.PayId);
+                this.paramCollection[1] = new SqlParameter("DeliveryId", order.DeliveryInfo.Type.DeliveryId);
+                this.paramCollection[2] = new SqlParameter("PayTypeId", order.PaymentInfor.PayType.PayTypeId);
+                this.paramCollection[3] = new SqlParameter("CustId", order.CustInfor.UserId);
+                this.paramCollection[4] = new SqlParameter("ReceiverFullname", order.ReceiverFullname.Trim());
+                this.paramCollection[5] = new SqlParameter("ReceiverAddress", order.ReceiverAddress.Trim());
+                this.paramCollection[6] = new SqlParameter("ReceiverPhone", order.ReceiverPhone.Trim());
+                this.paramCollection[7] = new SqlParameter("CountryId", order.CountryInfor.CountryId);
+                this.paramCollection[8] = new SqlParameter("City", order.City.Trim());
+                this.paramCollection[9] = new SqlParameter("State", order.State.Trim());
+                this.paramCollection[10] = new SqlParameter("Zipcode", order.Zipcode.Trim());
+                this.paramCollection[11] = new SqlParameter("TotalCost", order.TotalCost);
+                this.paramCollection[12] = new SqlParameter("Note", order.Note.Trim());
+
+    
+
+               return this.ExecuteStore(StoreDAO.SP_ORDER_CREATEORDER, paramCollection);
+            }
+            else
+                return false;
+            
         }
 
         /// <summary>
@@ -358,7 +401,7 @@ namespace ShoppingCart.DataAccess
         public Boolean DeleteOrderByOrderId(int orderid)
         {
             this.paramCollection = new SqlParameter[1];
-            this.paramCollection[13] = new SqlParameter("OrderId", orderid);
+            this.paramCollection[0] = new SqlParameter("OrderId", orderid);
             return this.ExecuteStore(StoreDAO.SP_ORDER_DELETEORDER_BY_ORDERID, paramCollection);
         }
 

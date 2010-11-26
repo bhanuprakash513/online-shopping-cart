@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ShoppingCard.Object;
+using ShoppingCart.Object;
 using System.Data.SqlClient;
 using System.Data;
 using ShoppingCart.Common;
@@ -28,7 +28,7 @@ namespace ShoppingCart.DataAccess
             {
                 get
                 {
-                    return GET_ALL + "  AND FeedbackType.FeedTypeId=@FeedTypeId";
+                    return GET_ALL + "  AND FeedbackType.FeedTypeId=@FeedTypeId "+SORT_DESC_BY_FEEDID;
                 }
             }
 
@@ -36,7 +36,7 @@ namespace ShoppingCart.DataAccess
             {
                 get
                 {
-                    return GET_ALL + " AND FeedbackType.FeedTypeId=" + Constant.FEEDBACK_TYPE_ID + " AND Feedback.UserId=@UserId ";
+                    return GET_ALL + " AND FeedbackType.FeedTypeId=" + Constant.FEEDBACK_TYPE_ID + " AND Feedback.UserId=@UserId " + SORT_DESC_BY_FEEDID;
                 }
             }
 
@@ -48,7 +48,7 @@ namespace ShoppingCart.DataAccess
             " [User].Username,[User].Password,[User].Fullname,[User].Gender,[User].Address,[User].Email,[User].RoleId,[User].PhoneNumber,[User].StatusId, " +
             " FeedbackType.FeedTypeName,[Role].RoleName,StatusUser.StatusUserName " +
             " FROM Feedback,[User],FeedbackType,[Role],StatusUser " +
-            " WHERE [User].UserId=Feedback.UserId AND FeedbackType.FeedTypeId=Feedback.FeedTypeId AND [Role].RoleId=[User].RoleId AND StatusUser.StatusUserId=[User].StatusId AND Feedback.FeedId=@FeedId";
+            " WHERE [User].UserId=Feedback.UserId AND FeedbackType.FeedTypeId=Feedback.FeedTypeId AND [Role].RoleId=[User].RoleId AND StatusUser.StatusUserId=[User].StatusId AND Feedback.FeedId=@FeedId ";
 
                 }
             }
@@ -57,7 +57,7 @@ namespace ShoppingCart.DataAccess
             {
                 get
                 {
-                    return "INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) "+
+                    return " INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) "+
                            " VALUES (@Question,@Answer,@UserId,@FeedTypeId,GETDATE())";
                 }
             }
@@ -66,8 +66,8 @@ namespace ShoppingCart.DataAccess
             {
                 get
                 {
-                    return "UPDATE Feedback SET Question=@Question,Answer=@Answer " +
-                        " WHERE FeedId=@FeedId";
+                    return " UPDATE Feedback SET Question=@Question,Answer=@Answer " +
+                        " WHERE FeedId=@FeedId ";
                 }
             }
 
@@ -75,7 +75,15 @@ namespace ShoppingCart.DataAccess
             {
                 get
                 {
-                    return "DELETE Feedback WHERE FeedId=@FeedId";
+                    return " DELETE Feedback WHERE FeedId=@FeedId ";
+                }
+            }
+
+            public static String SORT_DESC_BY_FEEDID
+            {
+                get
+                {
+                    return " ORDER BY FeedId Desc";
                 }
             }
         }

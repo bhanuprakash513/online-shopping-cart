@@ -4,7 +4,7 @@ using System.Text;
 using System.Data;
 using ShoppingCart.Common;
 
-namespace ShoppingCard.Object
+namespace ShoppingCart.Object
 { 
     public class User
     {
@@ -145,6 +145,7 @@ namespace ShoppingCard.Object
             }
         }
 
+
         /// <summary>
         /// Mapping object
         /// </summary>
@@ -195,6 +196,79 @@ namespace ShoppingCard.Object
           
         }
 
-       
+        /// <summary>
+        /// Mapping from user to obj
+        /// </summary>
+        /// <param name="obj">Customer</param>
+        /// <param name="user">User</param>
+        public static void Mapping(Customer obj, User user)
+        {
+            obj.UserId = user.userid;
+            if (user.UserName != null && user.UserName != "")
+                obj.UserName = user.UserName;
+            if (user.Address != null && user.Address != "")
+                obj.Address = user.Address;
+            if (user.Email != null && user.Email != "")
+                obj.Email = user.Email;
+            if (user.Fullname != null && user.Fullname != "")
+                obj.Fullname = user.Fullname;
+            if (user.Gender != null && user.Gender != "")
+                obj.Gender = user.Gender;
+            if (user.Password != null && user.Password != "")
+                obj.Password = user.Password;
+            if (user.PhoneNumber != null && user.PhoneNumber != "")
+                obj.PhoneNumber = user.PhoneNumber;
+            obj.StatusUser = user.StatusUser;
+        }
+
+        /// <summary>
+        /// Mapping from user to employee
+        /// </summary>
+        /// <param name="obj">Employee</param>
+        /// <param name="user">User</param>
+        public static void Mapping(Employee obj, User user)
+        {
+            obj.UserId = user.userid;
+            if (user.UserName != null && user.UserName != "")
+                obj.UserName = user.UserName;
+            if (user.Address != null && user.Address != "")
+                obj.Address = user.Address;
+            if (user.Email != null && user.Email != "")
+                obj.Email = user.Email;
+            if (user.Fullname != null && user.Fullname != "")
+                obj.Fullname = user.Fullname;
+            if (user.Gender != null && user.Gender != "")
+                obj.Gender = user.Gender;
+            if (user.Password != null && user.Password != "")
+                obj.Password = user.Password;
+            if (user.PhoneNumber != null && user.PhoneNumber != "")
+                obj.PhoneNumber = user.PhoneNumber;
+            obj.StatusUser = user.StatusUser;
+        }
+
+        /// <summary>
+        /// Mapping from obj to user
+        /// </summary>
+        /// <param name="obj">Admin</param>
+        /// <param name="user">User</param>
+        public static void Mapping(Admin obj, User user)
+        {
+            obj.UserId = user.userid;
+            if (user.UserName != null && user.UserName != "")
+                obj.UserName = user.UserName;
+            if (user.Address != null && user.Address != "")
+                obj.Address = user.Address;
+            if (user.Email != null && user.Email != "")
+                obj.Email = user.Email;
+            if (user.Fullname != null && user.Fullname != "")
+                obj.Fullname = user.Fullname;
+            if (user.Gender != null && user.Gender != "")
+                obj.Gender = user.Gender;
+            if (user.Password != null && user.Password != "")
+                obj.Password = user.Password;
+            if (user.PhoneNumber != null && user.PhoneNumber != "")
+                obj.PhoneNumber = user.PhoneNumber;
+            obj.StatusUser = user.StatusUser;
+        }
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using ShoppingCard.Object;
+using ShoppingCart.Object;
 using System.Data;
 using System.Data.SqlClient;
 using ShoppingCart.Common;
@@ -116,7 +116,7 @@ namespace ShoppingCart.DataAccess
         /// <returns>Boolean</returns>
         public Boolean AddPaymentDetail(PaymentCC payment)
         {
-            this.paramCollection = new SqlParameter[16];
+            this.paramCollection = new SqlParameter[17];
 
             this.paramCollection[0] = new SqlParameter("PaymentName", payment.PayType.PayTypeName.Trim());
             this.paramCollection[1] = new SqlParameter("CardTypeId",payment.CardBank.CardTypeId);
@@ -134,9 +134,16 @@ namespace ShoppingCart.DataAccess
             this.paramCollection[13] = new SqlParameter("CCNumber",payment.CCNumber.Trim());
             this.paramCollection[14] = new SqlParameter("CVV", payment.CVV.Trim());
             this.paramCollection[15] = new SqlParameter("SecurityNumber", payment.SecurityNumber.Trim());
-            
+            this.paramCollection[16] = new SqlParameter("PayDetailId", ColumnDetail.PAYMENTDATEIL_PAYDETAILID);
+            this.paramCollection[16].Direction = ParameterDirection.Output;
 
-            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
+            if (this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection))
+            {
+                payment.PayId = Convert.ToInt32(paramCollection[16].Value.ToString());
+                return true;
+            }
+            else
+                return false;
         }
 
         /// <summary>
@@ -146,7 +153,7 @@ namespace ShoppingCart.DataAccess
         /// <returns>Boolean</returns>
         public Boolean AddPaymentDetail(PaymentDD payment)
         {
-            this.paramCollection = new SqlParameter[16];
+            this.paramCollection = new SqlParameter[17];
 
             this.paramCollection[0] = new SqlParameter("PaymentName", payment.PayType.PayTypeName.Trim());
             this.paramCollection[1] = new SqlParameter("CardTypeId", Constant.ID_FALSE);
@@ -164,8 +171,16 @@ namespace ShoppingCart.DataAccess
             this.paramCollection[13] = new SqlParameter("CVV","");
             this.paramCollection[14] = new SqlParameter("SecurityNumber","");
             this.paramCollection[15] = new SqlParameter("ExpirationDate","");
-
-            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
+            this.paramCollection[16] = new SqlParameter("PayDetailId", ColumnDetail.PAYMENTDATEIL_PAYDETAILID);
+            this.paramCollection[16].Direction = ParameterDirection.Output;
+            
+            if (this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection))
+            {
+                payment.PayId = Convert.ToInt32(paramCollection[16].Value.ToString());
+                return true;
+            }
+            else
+                return false;
         }
 
         /// <summary>
@@ -176,8 +191,9 @@ namespace ShoppingCart.DataAccess
         public Boolean AddPaymentDetail(PaymentCheque payment)
         {
 
-            this.paramCollection = new SqlParameter[16];
+            this.paramCollection = new SqlParameter[17];
 
+            
             this.paramCollection[0] = new SqlParameter("PaymentName",payment.PayType.PayTypeName.Trim());
             this.paramCollection[1] = new SqlParameter("CardTypeId",Constant.ID_FALSE);
             this.paramCollection[2] = new SqlParameter("Title",payment.Title.Trim());
@@ -194,8 +210,15 @@ namespace ShoppingCart.DataAccess
             this.paramCollection[13] = new SqlParameter("CVV","");
             this.paramCollection[14] = new SqlParameter("SecurityNumber","");
             this.paramCollection[15] = new SqlParameter("ExpirationDate","");
-
-            return this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection);
+            this.paramCollection[16] = new SqlParameter("PayDetailId", ColumnDetail.PAYMENTDATEIL_PAYDETAILID);
+            this.paramCollection[16].Direction = ParameterDirection.Output;
+            if (this.ExecuteStore(StoreDAO.SP_PAYMENTDETAIL_INSERTPAYMENTDETAIL, paramCollection))
+            {
+                payment.PayId = Convert.ToInt32(paramCollection[16].Value.ToString());
+                return true;
+            }
+            else
+                return false;
         
         }
 

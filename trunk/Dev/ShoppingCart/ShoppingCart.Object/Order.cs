@@ -5,7 +5,7 @@ using System.Data;
 using ShoppingCart.Common;
 using ShoppingCart.Object;
 
-namespace ShoppingCard.Object
+namespace ShoppingCart.Object
 {
      public class Order
     {
@@ -49,8 +49,12 @@ namespace ShoppingCard.Object
              zipcode = "";
              totalcode = "0";
              paymentinfor = new PaymentCC();
+             paymentccinfor = new PaymentCC();
+             paymentddinfor = new PaymentDD();
+             paymentchequeinfor = new PaymentCheque();
              countryinfor = new Country();
              extramoney = "0";
+             note = "";
          }
 
          public int OrderId

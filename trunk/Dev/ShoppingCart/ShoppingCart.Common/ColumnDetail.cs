@@ -26,5 +26,13 @@ namespace ShoppingCart.Common
             }
         }
 
+
+        public static SqlDbType PAYMENTDATEIL_PAYDETAILID
+        {
+            get
+            {
+                return SqlDbType.Int;
+            }
+        }
     }
 }
