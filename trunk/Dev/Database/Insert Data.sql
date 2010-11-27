@@ -1,4 +1,4 @@
--- CardType --
+    -- CardType --
 INSERT INTO CardType(CardTypeName) VALUES ('Master Card')
 INSERT INTO CardType(CardTypeName) VALUES ('Visa Card')
 INSERT INTO CardType(CardTypeName) VALUES ('Amex Card')
@@ -394,8 +394,8 @@ INSERT INTO Product(ProductId,CatId,ProductName,Price,Description,WarantyDay,Ima
 INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('How to buy online your product','It is very simple',1,1,getdate())
 INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('How to use your search feature','It is very simple',1,1,getdate())
 
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('I am very satisfy with your service','Thank You Very Much',4,2,getdate())
-INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('You done well','Thank You Very Much',3,2,getdate())
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('I am very satisfy with your service','Thank You Very Much',3,2,getdate())
+INSERT INTO Feedback(Question,Answer,UserId,FeedTypeId,DateWrite) VALUES ('You done well','Thank You Very Much',4,2,getdate())
 
 
 ------------------------------PAYMENT DETAIL----------------------------------------------------
