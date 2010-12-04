@@ -9,6 +9,7 @@ IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[SP_Order_C
 DROP PROCEDURE [dbo].[SP_Order_CreateOrder]
 GO
 CREATE PROC [SP_Order_CreateOrder]
+	@OrderId int output,
 	@PayDetailId int,
 	@DeliveryId int,
 	@PayTypeId int,
@@ -67,4 +68,6 @@ BEGIN
 		@StatusDeliveryId,
 		@Note
 	)	
+
+	SELECT @OrderId=Max(OrderId) FROM [Order]
 END
