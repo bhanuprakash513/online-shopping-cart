@@ -33,7 +33,8 @@ BEGIN
 	DECLARE @PayMax1 int
 	DECLARE @PayMax2 int
 	
-	SELECT @PayMax1=Max(PayDetailId) FROM PaymentDetail
+--	SELECT @PayMax1=Max(PayDetailId) FROM PaymentDetail
+
 	INSERT INTO PaymentDetail
 	(
 		PaymentName,
@@ -74,9 +75,9 @@ BEGIN
 	)
 	
 	SELECT @PayMax2=Max(PayDetailId) FROM PaymentDetail
-	IF @PayMax2>@PayMax1
+--	IF @PayMax2>@PayMax1 
 		SET @PayDetailId=@PayMax2
-	ELSE
-		SET @PayDetailId=-1;
+--	ELSE
+--		SET @PayDetailId=-1;
 END
 
